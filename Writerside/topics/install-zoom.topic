@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="줌 설치하기" id="install-zoom">
+
+    <list>
+        <li>화상 회의를 위해 <path>Zoom</path> 을 설치합니다.</li>
+    </list>
+
+    <procedure title="줌 설치">
+        <step>
+            <a href="https://zoom.us/download"></a>
+            <p>위 페이지에서 설치 파일을 다운 받은 후, 설치를 진행합니다.</p>
+        </step>
+        <step>
+            <img alt="install-zoom.png" src="install-zoom.png"/>
+            <p>회원가입을 진행하여, 계정을 생성합니다.</p>
+        </step>
+    </procedure>
+</topic>

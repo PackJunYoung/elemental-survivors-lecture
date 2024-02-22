@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="main"
+                 name="Elemental Survivors"
+                 start-page="intro.md">
+
+    <toc-element topic="intro.md"/>
+
+    <toc-element toc-title="초기환경 설정하기">
+        <toc-element topic="install-unity.topic"/>
+        <toc-element topic="install-code-editor.topic"/>
+        <toc-element topic="install-zoom.topic"/>
+        <toc-element topic="install-git.topic"/>
+        <toc-element topic="install-sourcetree.topic"/>
+    </toc-element>
+</instance-profile>

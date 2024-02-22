@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="코드 에디터 설치하기" id="install-code-editor">
+
+    <list>
+        <li>코드 작업을 진행하기 위해서는 코드 에디터 프로그램이 필요합니다.</li>
+        <li>코드 에디터(IDE)에는 다양한 종류가 있으며, 그 중 <path>Visual Studio Code</path> 를 사용하도록 하겠습니다.</li>
+        <li>더 익숙한 코드 에디터를 사용하셔도 됩니다.</li>
+    </list>
+
+    <procedure title="Visual Studio Code 설치">
+        <step>
+            <a href="https://code.visualstudio.com/"></a>
+            <p>위 Visual Studio Code 공식 사이트로 들어갑니다.</p>
+        </step>
+        <step>
+            <p><path>Download</path> 버튼을 클릭하여 설치를 진행합니다.</p>
+        </step>
+        <step>
+            <img alt="install-code-editor-1.png" src="install-code-editor-1.png"/>
+            <p>설치가 완료되면, 프로그램을 실행합니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="유니티 개발용 Extensions 설치">
+        <step>
+            <p>Visual Studio Code 는 유니티에만 사용되는 에디터가 아니며, 유니티 개발을 위해 추가로 확장 프로그램을 설치해 주어야 합니다.</p>
+        </step>
+        <step>
+            <img alt="install-code-editor-2.png" src="install-code-editor-2.png"/>
+            <p>좌측의 <path>Extensions</path> 메뉴를 클릭합니다.</p>
+        </step>
+        <step>
+            <img alt="install-code-editor-3.png" src="install-code-editor-3.png"/>
+            <list>
+                <li><path>C#</path> 이라고 검색한 뒤 위와 같은 확장 프로그램을 <path>Install</path> 버튼을 클릭하여 설치합니다.</li>
+                <li><path>Install</path> 이 아니고 <path>Uninstall</path> 이라고 되어 있다면, 이미 설치된 것 입니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="install-code-editor-7.png" src="install-code-editor-7.png"/>
+            <p><path>Unity</path> 도 검색하여 설치합니다.</p>
+        </step>
+        <step>
+            <img alt="install-code-editor-4.png" src="install-code-editor-4.png"/>
+            <p><path>Unity Tools</path> 도 검색하여 설치합니다.</p>
+        </step>
+        <step>
+            <img alt="install-code-editor-5.png" src="install-code-editor-5.png"/>
+            <list>
+                <li><path>Unity Code Snippets</path> 도 설치해 줍니다.</li>
+                <li>코드 작성을 도와주는 확장 프로그램입니다.</li>
+                <li>유사한 이름의 확장 프로그램이 많은데, 약간씩 스타일이 다른 것으로 아무거나 설치하셔도 됩니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="유니티와 Visual Studio Code 연결">
+        <step>
+            <p>이제 Visual Studio Code 의 설정은 끝났고, 유니티에서 해당 코드 에디터를 사용하는 것으로 설정해 주어야 합니다.</p>
+        </step>
+        <step>
+            <img alt="install-code-editor-8.png" src="install-code-editor-8.png"/>
+            <p><path>Unity | Settings</path> 메뉴로 이동합니다.</p>
+        </step>
+        <step>
+            <img alt="install-code-editor-9.png" src="install-code-editor-9.png"/>
+            <p>좌측에 <path>External Tools</path> 탭을 선택하고, <path>External Script Editor</path> 항목에 Visual Studio Code 를 지정해 줍니다.</p>
+        </step>
+    </procedure>
+</topic>
