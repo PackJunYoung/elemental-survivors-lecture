@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="프로젝트 생성해보기" id="create-project">
+
+    <list>
+        <li>유니티를 설치하였으니 프로젝트를 생성해 봅니다.</li>
+    </list>
+
+    <procedure title="새 프로젝트 생성">
+        <step>
+            <img alt="create-project-1.png" src="create-project-1.png"/>
+            <p>유니티 허브 Project 탭에서 <path>New project</path> 버튼을 클릭합니다.</p>
+        </step>
+        <step>
+            <img alt="create-project-2.png" src="create-project-2.png"/>
+            <list>
+                <li><path>2D</path> 항목을 선택합니다.</li>
+                <li><path>Project name</path> 항목에 원하는 이름을 지정합니다.</li>
+                <li><path>Connect to Unity Cloud</path> 항목은 체크 해제합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="create-project-3.png" src="create-project-3.png"/>
+            <p><path>Create project</path> 버튼을 클릭합니다.</p>
+        </step>
+        <step>
+            <img alt="create-project-4.png" src="create-project-4.png"/>
+            <p>위와 같이 유니티 에디터가 열리면, 정상적으로 프로젝트가 생성된 것입니다.</p>
+        </step>
+    </procedure>
+</topic>

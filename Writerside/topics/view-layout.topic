@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="레이아웃 살펴보기" id="view-layout">
+
+    <list>
+        <li>유니티를 실행하면, 여러가지 윈도우들로 구성된 레이아웃을 볼 수 있습니다.</li>
+        <li>Scene, Project, Hierarchy, Inspector 등 여러가지 윈도우가 존재하며, 각각 특정한 기능을 수행합니다.</li>
+        <li>많은 윈도우 중 가장 많이 사용되는 윈도우 위주로 먼저 알아보도록 하겠습니다.</li>
+    </list>
+
+    <procedure title="프로젝트 윈도우 (Project)">
+        <step>
+            <img alt="view-layout-1.png" src="view-layout-1.png"/>
+            <list>
+                <li>하단의 프로젝트 윈도우는 게임을 구성할 리소스들이 모여 있는 곳입니다.</li>
+                <li><path>Package</path> 폴더는 외부에서 가져오는 리소스들을 담고 있습니다.</li>
+                <li><path>Assets</path> 폴더에 내가 추가한 리소스들을 담고 있습니다.</li>
+                <li><path>+</path> 버튼을 클릭하여, 리소스를 추가할 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="view-layout-2.png" src="view-layout-2.png"/>
+            <list>
+                <li>실제 폴더 구조로 들어가보면, 실제로 해당 파일들이 존재하는 것을 확인할 수 있습니다.</li>
+                <li>파일을 폴더 구조에 추가하거나, 프로젝트 윈도우로 드래그하여 추가할수도 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="view-layout-3.png" src="view-layout-3.png"/>
+            <list>
+                <li>파일 형식에 따라 폴더 구조로 구분해 놓으면 보기 편리합니다.</li>
+                <li>유니티 아이콘 모양의 <path>.unity</path> 파일은 씬 파일로 씬에 대한 정보를 담고있는 파일입니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="하이어라키 윈도우 (Hierarchy)">
+        <step>
+            <img alt="view-layout-4.png" src="view-layout-4.png"/>
+            <list>
+                <li>하이어라키 윈도우는 씬을 구성하는 리소스들의 목록입니다.</li>
+                <li>하이어라키 상의 모든 항목은 <path>게임 오브젝트</path> 입니다.</li>
+                <li>하이어라키 상의 항목들은 계층 구조를 가질 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="view-layout-5.png" src="view-layout-5.png"/>
+            <list>
+                <li><path>+</path> 버튼을 클릭하여, 게임 오브젝트를 추가할 수 있습니다.</li>
+                <li>특정 형식의 리소스는 프로젝트 윈도우에서 하이어라키 윈도우로 드래그하여 게임 오브젝트를 추가할 수 있습니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="씬 윈도우 (Scene)">
+        <step>
+            <img alt="view-layout-6.png" src="view-layout-6.png"/>
+            <list>
+                <li>씬 윈도우는 하이어라키 윈도우에서 구성한 게임 오브젝트들을 세부 조정하는 윈도우입니다.</li>
+                <li>실제로 눈에 보이는 부분을 보여주는 미리보기라고도 볼 수 있으며, 간편하게 게임 오브젝트를 조정할 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="view-layout-7.png" src="view-layout-7.png"/>
+            <list>
+                <li>이 부분은 어떤 좌표계로 보여줄지에 대한 부분으로 추후에 설명하도록 하겠습니다.</li>
+                <li>씬 뷰의 메뉴들은 씬 뷰에서 어떤 형태로 출력해서 보여줄지에 대한 부분으로 게임에 영향을 주지 않습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="view-layout-8.png" src="view-layout-8.png"/>
+            <list>
+                <li>이 부분은 씬 뷰에서 특정 게임 오브젝트를 쉽게 식별하기 위한 아이콘(기즈모)를 어떻게 출력할 지에 대한 항목입니다.</li>
+                <li>한 가운데 카메라 아이콘과 카메라 영역인 사각형이 보이는 것이 기즈모라고 볼 수 있습니다.</li>
+                <li>하이어라키 윈도우에 있는 <path>Main Camera</path> 의 기즈모가 출력되는 것입니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="view-layout-9.png" src="view-layout-9.png"/>
+            <list>
+                <li>좌상단의 항목은 선택한 게임 오브젝트를 조정하기 위한 방식을 설정합니다.</li>
+                <li>첫번째는 선택만 하는 것이고 두번째 부터 위치, 회전, 크기를 조절할 수 있습니다.</li>
+                <li>4번째는 유아이를 조절하는 항목이며, 5번째는 위치와 회전를 한번에 조절할 수 있는 항목입니다.</li>
+            </list>
+        </step>
+        <step>
+            <p>하이어라키 윈도우에서 특정 게임 오브젝트를 선택한 다음, Scene 윈도우에서 <shortcut>F</shortcut> 키를 누르면 해당 오브젝트가 포커스됩니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="인스펙터 윈도우 (Inspector)">
+        <step>
+            <img alt="view-layout-10.png" src="view-layout-10.png"/>
+            <list>
+                <li>인스펙터 윈도우는 선택한 게임 오브젝트의 자세한 속성이 표시되는 윈도우입니다.</li>
+                <li>게임 오브젝트는 컴포넌트의 조합으로 구성되며, 각각의 컴포넌트가 나열되어 출력됩니다.</li>
+                <li>게임 오브젝트와 포함하는 컴포넌트에 대한 설정값을 조정할 수 있습니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="게임 윈도우 (Game)">
+        <step>
+            <img alt="view-layout-11.png" src="view-layout-11.png"/>
+            <list>
+                <li>게임 윈도우는 실제로 게임을 실행하여 테스트해 볼 수 있는 윈도우입니다.</li>
+                <li>해상도 설정이나 크기 조절 등 실제 실행되는 형태와 관련된 몇가지 조정이 가능합니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="콘솔 윈도우 (Console)">
+        <step>
+            <img alt="view-layout-12.png" src="view-layout-12.png"/>
+            <list>
+                <li>콘솔 윈도우는 실제 게임이 실행되며 발생하는 다양한 기록(로그)이 나열되는 윈도우입니다.</li>
+                <li>로그에는 로그, 경고, 오류 세 가지가 있으며 뒤로 갈 수록 치명적인 로그에 해당합니다.</li>
+                <li>게임 진행 중에 로그를 남김으로써, 게임 진행 상황을 파악하고 이슈를 해결하는데 중요한 역할을 할 수 있습니다.</li>
+            </list>
+        </step>
+    </procedure>
+</topic>

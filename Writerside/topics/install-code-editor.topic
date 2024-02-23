@@ -71,4 +71,31 @@
             <p>좌측에 <path>External Tools</path> 탭을 선택하고, <path>External Script Editor</path> 항목에 Visual Studio Code 를 지정해 줍니다.</p>
         </step>
     </procedure>
+
+    <procedure title="연결 확인해보기">
+        <step>
+            <img alt="install-code-editor-10.png" src="install-code-editor-10.png"/>
+            <p>Project 윈도우의 <path>+</path> 버튼을 클릭합니다.</p>
+        </step>
+        <step>
+            <img alt="install-code-editor-11.png" src="install-code-editor-11.png"/>
+            <p><path>C# Script</path> 메뉴를 선택합니다.</p>
+        </step>
+        <step>
+            <img alt="install-code-editor-12.png" src="install-code-editor-12.png"/>
+            <p>원하는 이름으로 지정합니다.</p>
+        </step>
+        <step>
+            <img alt="install-code-editor-13.png" src="install-code-editor-13.png"/>
+            <p>생성한 스크립트 파일을 더블클릭 합니다.</p>
+        </step>
+        <step>
+            <img alt="install-code-editor-14.png" src="install-code-editor-14.png"/>
+            <p>위와 같은 팝업이 나오면, <path>Yes, I trust the authors</path> 버튼을 클릭합니다.</p>
+        </step>
+        <step>
+            <img alt="install-code-editor-15.png" src="install-code-editor-15.png"/>
+            <p>위와 같이 비주얼 스튜디오 코드가 정상적으로 실행되면, 연결이 완료된 것 입니다.</p>
+        </step>
+    </procedure>
 </topic>

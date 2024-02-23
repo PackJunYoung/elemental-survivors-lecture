@@ -10,9 +10,15 @@
 
     <toc-element toc-title="초기환경 설정하기">
         <toc-element topic="install-unity.topic"/>
+        <toc-element topic="create-project.topic"/>
         <toc-element topic="install-code-editor.topic"/>
         <toc-element topic="install-zoom.topic"/>
         <toc-element topic="install-git.topic"/>
         <toc-element topic="install-sourcetree.topic"/>
+    </toc-element>
+
+    <toc-element toc-title="유니티 살펴보기">
+
+        <toc-element topic="view-layout.topic"/>
     </toc-element>
 </instance-profile>
