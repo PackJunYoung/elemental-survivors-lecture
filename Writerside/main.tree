@@ -20,5 +20,9 @@
     <toc-element toc-title="유니티 살펴보기">
 
         <toc-element topic="view-layout.topic"/>
+        <toc-element topic="set-layout.topic"/>
+        <toc-element topic="view-game-object.topic"/>
+        <toc-element topic="save.topic"/>
+        <toc-element topic="run-unity.topic"/>
     </toc-element>
 </instance-profile>

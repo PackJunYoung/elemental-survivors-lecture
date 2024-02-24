@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="레이아웃 설정하기" id="set-layout">
+
+    <list>
+        <li>유니티는 여러가지 형태의 기본 레이아웃 설정을 제공합니다.</li>
+        <li>또한, 자신이 사용하기 편리한 형태로 변형이 가능합니다.</li>
+        <li>그리고 자신이 변경한 레이아웃을 저장할 수 있습니다.</li>
+    </list>
+
+    <procedure title="레아이웃 변경">
+        <step>
+            <img alt="set-layout-1.png" src="set-layout-1.png"/>
+            <p>우상단의 <path>Default</path> 라고 표기된 드롭박스를 선택합니다.</p>
+        </step>
+        <step>
+            <img alt="set-layout-2.png" src="set-layout-2.png"/>
+            <p>항목 중 <path>Tall</path> 을 선택합니다.</p>
+        </step>
+        <step>
+            <img alt="set-layout-3.png" src="set-layout-3.png"/>
+            <p>기본 레이아웃이 변경된 것을 확인할 수 있습니다.</p>
+        </step>
+        <step>
+            <img alt="set-layout-4.png" src="set-layout-4.png"/>
+            <p>프로젝트 윈도우의 가운데 구분선을 클릭한 채로 드래그하여 위치를 변경합니다.</p>
+        </step>
+        <step>
+            <img alt="set-layout-5.png" src="set-layout-5.png"/>
+            <p>하단의 슬라이드를 조절하여, 리소스 아이콘의 크기를 변경합니다.</p>
+        </step>
+        <step>
+            <img alt="set-layout-6.png" src="set-layout-6.png"/>
+            <p><path>Window | General | Console</path> 메뉴를 선택하여, 콘솔 윈도우를 출력합니다.</p>
+        </step>
+        <step>
+            <img alt="set-layout-7.png" src="set-layout-7.png"/>
+            <p>생성된 윈도우의 <path>Console</path> 탭 부분을 클릭한 다음 드래그하여 Inspector 탭 옆으로 옮깁니다.</p>
+        </step>
+        <step>
+            <img alt="set-layout-8.png" src="set-layout-8.png"/>
+        </step>
+    </procedure>
+
+    <procedure title="레이아웃 저장">
+        <step>
+            <img alt="set-layout-9.png" src="set-layout-9.png"/>
+            <p>다시 <path>Tall</path> 이라고 되어있는 우상단 드롭박스를 선택하고, <path>Save Layout...</path> 메뉴를 클릭합니다.</p>
+        </step>
+        <step>
+            <img alt="set-layout-10.png" src="set-layout-10.png"/>
+            <p>출력되는 팝업에 원하는 이름을 입력합니다.</p>
+        </step>
+        <step>
+            <img alt="set-layout-11.png" src="set-layout-11.png"/>
+            <p>다시 드롭박스를 선택하면, 방금 저장한 항목이 추가되어 있는 것을 확인할 수 있습니다.</p>
+        </step>
+        <step>
+            <img alt="set-image-12.png" src="set-image-12.png"/>
+            <p>이제 다른 레이아웃으로 변경했다가도 내 레이아웃으로 바로 돌아올 수 있습니다.</p>
+        </step>
+    </procedure>
+</topic>

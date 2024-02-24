@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="게임 오브젝트 살펴보기" id="view-game-object">
+
+    <list>
+        <li>게임은 한 개 이상의 씬으로 만들어지며, 하나의 씬은 여러개의 게임 오브젝트 간의 상호작용으로 만들어집니다.</li>
+        <li>결국 게임을 구성하는 것은 하이어라키 윈도우 상의 게임 오브젝트들 입니다.</li>
+        <li>게임 오브젝트는 다양한 컴포넌트를 통해 다양한 기능을 제공합니다.</li>
+    </list>
+
+    <procedure title="게임 오브젝트 추가">
+        <step>
+            <img alt="view-game-object-1.png" src="view-game-object-1.png"/>
+            <p>현재 켜져 있는 <path>SampleScene</path> 에는 <path>Main Camera</path> 라는 이름의 게임 오브젝트 한 개만 존재합니다.</p>
+        </step>
+        <step>
+            <img alt="view-game-object-2.png" src="view-game-object-2.png"/>
+            <p><path>+ | 2D Object | Sprites | Square</path> 메뉴를 선택합니다.</p>
+        </step>
+        <step>
+            <img alt="view-game-object-3.png" src="view-game-object-3.png"/>
+            <p><path>Square</path> 라는 이름의 게임 오브젝트 하나가 추가됩니다.</p>
+        </step>
+        <step>
+            <img alt="view-game-object-4.png" src="view-game-object-4.png"/>
+            <p>씬 윈도우에서도 뭔가 추가된 것을 볼 수 있습니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="게임 오브젝트 설명">
+        <step>
+            <img alt="view-game-object-5.png" src="view-game-object-5.png"/>
+            <p>추가한 <path>Square</path> 게임 오브젝트를 선택하면, 인스펙터 윈도우에 해당 오브젝트의 정보가 노출됩니다.</p>
+        </step>
+        <step>
+            <img alt="view-game-object-6.png" src="view-game-object-6.png"/>
+            <p>오브젝트의 이름인 Square 가 있고, 선택해서 변경할 수도 있습니다.</p>
+        </step>
+        <step>
+            <img alt="view-game-object-7.png" src="view-game-object-7.png"/>
+            <p>이름 왼쪽의 체크박스를 클릭하여, 체크를 해제합니다.</p>
+        </step>
+        <step>
+            <img alt="view-game-object-8.png" src="view-game-object-8.png"/>
+            <p>하이어라키 윈도우에 반투명한 상태로 변경된 것을 볼 수 있습니다.</p>
+        </step>
+        <step>
+            <img alt="view-game-object-9.png" src="view-game-object-9.png"/>
+            <list>
+                <li>씬 윈도우에서도 없어진 것을 볼 수 있습니다.</li>
+                <li>해당 체크박스는 오브젝트를 활성화할 지의 여부라는 것을 알 수 있습니다.</li>
+                <li>다시 체크로 변경하여, 활성화 상태로 만듭니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="트랜스폼 설명">
+        <step>
+            <img alt="view-game-object-10.png" src="view-game-object-10.png"/>
+            <list>
+                <li>모든 게임 오브젝트는 기본적으로 <path>Transform</path> 컴포넌트를 가집니다.</li>
+                <li>트랜스폼은 씬 상에서 해당 게임 오브젝트의 위치, 회전, 크기를 결정합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="view-game-object-11.png" src="view-game-object-11.png"/>
+            <p>Position:(4, 0, 0), Rotation:(0, 0, 45), Scale:(2, 2, 1) 로 변경합니다.</p>
+        </step>
+        <step>
+            <img alt="view-game-object-12.png" src="view-game-object-12.png"/>
+            <p>변경한 값 만큼 오브젝트에 변형이 가해진 것을 볼 수 있습니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="컴포넌트 추가">
+        <step>
+            <img alt="view-game-object-14.png" src="view-game-object-14.png"/>
+            <p>Main Camera 오브젝트는 Transform, Camera, Audio Listener 세 가지 컴포넌트를 가지고 있습니다.</p>
+        </step>
+        <step>
+            <img alt="view-game-object-13.png" src="view-game-object-13.png"/>
+            <list>
+                <li>Square 오브젝트는 Transform, Sprite Renderer 두 가지 컴포넌트를 가지고 있습니다.</li>
+                <li>오브젝트의 기능을 구현하는 것을 컴포넌트로 컴포넌트가 추가되면서 특정 기능을 추가할 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="view-game-object-15.png" src="view-game-object-15.png"/>
+            <p>하단의 <path>Add Component</path> 버튼을 클릭합니다.</p>
+        </step>
+        <step>
+            <img alt="view-game-object-16.png" src="view-game-object-16.png"/>
+            <p>box 를 검색하여 <path>Box Collider 2D</path> 항목을 선택합니다.</p>
+        </step>
+        <step>
+            <img alt="view-game-object-17.png" src="view-game-object-17.png"/>
+            <p><path>Box Collider 2D</path> 컴포넌트가 추가됩니다.</p>
+        </step>
+        <step>
+            <img alt="view-game-object-18.png" src="view-game-object-18.png"/>
+            <p>Square 오브젝트가 선택된 상태에서 <path>TestScript</path> 를 드래그하여 인스펙터 윈도우에 끌어다 놓습니다.</p>
+        </step>
+        <step>
+            <img alt="view-game-object-19.png" src="view-game-object-19.png"/>
+            <list>
+                <li>Test Script 가 추가된 것을 확인할 수 있습니다.</li>
+                <li>스크립트도 하나의 컴포넌트가 되어 오브젝트에 추가될 수 있습니다.</li>
+            </list>
+        </step>
+    </procedure>
+</topic>
