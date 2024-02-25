@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="유니티 라이프사이클" id="lifecycle">
+
+    <list>
+        <li>게임이 진행됨에따라 유니티의 게임 오브젝트는 생성과 제거 등 여러가지 상태 변경을 합니다.</li>
+        <li>게임 오브젝트의 상태가 변경되는 것을 라이프사이클(Lifecycle)이라고 합니다.</li>
+        <li>유니티의 게임 오브젝트에 스크립트가 추가되면, 특정 라이프사이클 단계에 따라 메서드가 호출됩니다.</li>
+    </list>
+
+    <procedure title="Start">
+        <step>
+            <code-block lang="c#">
+                void Start()
+                {
+                    Debug.Log("Start");
+                }
+            </code-block>
+        </step>
+        <list>
+            <li><path>Start</path> 메서드는 게임 오브젝트가 생성되고 시작될 때, 호출됩니다.</li>
+            <li>따라서, TestScript 를 가진 Empty 게임 오브젝트가 있는 상태에서 실행하였을 때, 바로 로그가 출력된 것입니다.</li>
+            <li>주로 해당 게임 오브젝트에 필요한 초기화 작업을 수행합니다.</li>
+        </list>
+    </procedure>
+
+    <procedure title="Update">
+        <step>
+            <code-block lang="c#">
+                void Update()
+                {
+                    Debug.Log("Update");
+                }
+            </code-block>
+            <p>Update 부분에 로그를 추가하고 유니티를 실행해 봅니다.</p>
+        </step>
+        <step>
+            <img alt="lifecycle-1.png" src="lifecycle-1.png"/>
+            <p>최초에 Start 로그가 한번 출력되고, 이후에 Update 로그가 엄청 많이 출력된 것을 볼 수 있습니다.</p>
+        </step>
+        <step>
+            <list>
+                <li><path>Update</path> 는 게임이 실행되는 동안 해당 게임 오브젝트에서 매 프레임마다 호출됩니다.</li>
+                <li>게임은 성능에 따라 1초에 약 30~100에 가까운 프레임이 처리되면서 구동됩니다. 이를 FPS(Frame Per Second)라고 합니다.</li>
+                <li>따라서, 30FPS 게임이라면 1초에 Update 가 약 30번 호출됩니다.</li>
+                <li>Update 는 계속 호출되는 함수이기 때문에, 뭔가를 계속 체크해야되는 로직에 사용될 수 있습니다.</li>
+            </list>
+        </step>
+    </procedure>
+</topic>

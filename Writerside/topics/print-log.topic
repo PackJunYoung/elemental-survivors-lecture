@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="기본 로그 출력" id="print-log">
+
+    <list>
+        <li>로그출력 코드를 추가하면, 해당 타이밍에 콘솔 윈도우에 로그가 출력됩니다.</li>
+        <li>로그를 통해 게임의 진행과 이슈를 확인할 수 있습니다.</li>
+    </list>
+
+    <procedure title="스크립트 추가">
+        <step>
+            <img alt="print-log-1.png" src="print-log-1.png"/>
+            <p>프로젝트 윈도우에 <path>Assets</path> 을 선택합니다.</p>
+        </step>
+        <step>
+            <img alt="print-log-2.png" src="print-log-2.png"/>
+            <p><path>+ | Folder</path> 메뉴를 선택합니다.</p>
+        </step>
+        <step>
+            <img alt="print-log-3.png" src="print-log-3.png"/>
+            <p><path>Scripts</path> 이름으로 추가합니다. 스크립트는 이 곳에 추가될 예정입니다.</p>
+        </step>
+        <step>
+            <img alt="print-log-4.png" src="print-log-4.png"/>
+            <p>추가된 Scripts 폴더를 선택합니다.</p>
+        </step>
+        <step>
+            <img alt="print-log-5.png" src="print-log-5.png"/>
+            <p><path>+ | C# Script</path> 메뉴를 선택합니다.</p>
+        </step>
+        <step>
+            <img alt="print-log-6.png" src="print-log-6.png"/>
+            <p><path>TestScript</path> 라는 이름으로 추가합니다.</p>
+        </step>
+        <step>
+            <img alt="print-log-7.png" src="print-log-7.png"/>
+            <p>추가된 TestScript 파일을 더블클릭하여 코드 에디터를 실행합니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="빈 오브젝트에 스크립트 추가">
+        <step>
+            <img alt="print-log-8.png" src="print-log-8.png"/>
+            <p>하이어라키 윈도우에서 <path>+ | Create Empty</path> 메뉴를 선택합니다.</p>
+        </step>
+        <step>
+            <img alt="print-log-9.png" src="print-log-9.png"/>
+            <p><path>Empty</path> 라는 이름으로 추가합니다.</p>
+        </step>
+        <step>
+            <img alt="print-log-10.png" src="print-log-10.png"/>
+            <p>추가된 오브젝트의 Position 값에 임의의 값이 기입되어 있을 수 있습니다.</p>
+        </step>
+        <step>
+            <img alt="print-log-11.png" src="print-log-11.png"/>
+            <p><path>... | Reset</path> 메뉴를 선택합니다.</p>
+        </step>
+        <step>
+            <img alt="print-log-12.png" src="print-log-12.png"/>
+            <p>Position 이 (0, 0, 0) 으로 변경됩니다.</p>
+        </step>
+        <step>
+            <img alt="print-log-13.png" src="print-log-13.png"/>
+            <p>Empty 오브젝트를 선택한 상태에서 <path>TestScript</path> 를 드래그하여 인스펙터 뷰에 끌어다 놓습니다.</p>
+        </step>
+        <step>
+            <p>이렇게 되면 Empty 오브젝트에 TestScript 스크립트가 추가된 것입니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="로그 추가">
+        <step>
+            <code-block lang="c#">
+                using System.Collections;
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                public class TestScript : MonoBehaviour
+                {
+                    // Start is called before the first frame update
+                    void Start()
+                    {
+                        Debug.Log("Hi");
+                    }
+
+                    // Update is called once per frame
+                    void Update()
+                    {
+
+                    }
+                }
+            </code-block>
+            <p><path>Start</path> 부분에 <path>Debug.Log("Hi");</path> 코드를 추가합니다.</p>
+        </step>
+        <step>
+            <img alt="print-log-14.png" src="print-log-14.png"/>
+            <p>유니티를 실행합니다.</p>
+        </step>
+        <step>
+            <img alt="print-log-15.png" src="print-log-15.png"/>
+            <p>콘솔 윈도우를 보면 작성한 로그가 출력되는 것을 볼 수 있습니다.</p>
+        </step>
+    </procedure>
+</topic>

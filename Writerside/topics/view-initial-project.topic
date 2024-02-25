@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="초기 프로젝트 살펴보기" id="view-initial-project">
+
+    <list>
+        <li>프로젝트의 최종 목적은 뱀파이어 서바이벌과 유사한 뱀서라이크 게임을 완성시키는 것 입니다.</li>
+        <li>프로젝트 시작 단계는 필요한 리소스 이외에 아무런 작업도 되어있지 않은 상태입니다.</li>
+    </list>
+
+    <procedure title="최종 결과물 훑어보기">
+        <step>
+            <img alt="view-initial-project-1.png" src="view-initial-project-1.png"/>
+            <list>
+                <li>키보드로 캐릭터의 위치를 조정합니다.</li>
+                <li>캐릭터가 반복적으로 스킬을 사용합니다.</li>
+                <li>몬스터와 보스가 반복적으로 출현합니다.</li>
+                <li>몬스터가 죽으면 경험치 또는 물약을 드랍합니다.</li>
+                <li>경험치를 수집하여 레벨업 하고 새로운 스킬을 배우거나 스킬을 업그레이드 합니다.</li>
+                <li>몬스터에게 접촉하면 체력이 감소하고, 모든 체력이 감소하면 캐릭터가 사망합니다.</li>
+                <li>정해진 시간을 죽지 않고 살아남으면 승리합니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="초기 프로젝트 상태 살펴보기">
+        <step>
+            <img alt="view-initial-project-2.png" src="view-initial-project-2.png"/>
+            <list>
+                <li>먼저 프로젝트 윈도우를 보면 <path>Arts</path> 폴더와 <path>Scenes</path> 폴더가 있습니다.</li>
+                <li><path>Scenes</path> 폴더는 <path>GameScene</path> 파일을 가지고 있습니다. 실제 게임을 구성하는 씬 입니다.</li>
+                <li><path>Arts</path> 폴더에는 다양한 디자인 리소스가 들어 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="view-initial-project-3.png" src="view-initial-project-3.png"/>
+            <list>
+                <li>GameScene 에 진입하여 하이어라키 윈도우를 살펴봅니다.</li>
+                <li>아무런 게임 오브젝트도 없는 빈 씬입니다.</li>
+            </list>
+        </step>
+    </procedure>
+</topic>

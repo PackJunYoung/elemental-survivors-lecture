@@ -18,11 +18,27 @@
     </toc-element>
 
     <toc-element toc-title="유니티 살펴보기">
-
         <toc-element topic="view-layout.topic"/>
         <toc-element topic="set-layout.topic"/>
         <toc-element topic="view-game-object.topic"/>
         <toc-element topic="save.topic"/>
         <toc-element topic="run-unity.topic"/>
+    </toc-element>
+
+    <toc-element toc-title="시작 프로젝트 살펴보기">
+        <toc-element topic="get-git-project.topic"/>
+        <toc-element topic="view-initial-project.topic"/>
+        <toc-element topic="view-design-resource.topic"/>
+    </toc-element>
+
+    <toc-element toc-title="기초 프로그래밍">
+        <toc-element topic="print-log.topic"/>
+        <toc-element topic="comment.topic"/>
+        <toc-element topic="lifecycle.topic"/>
+        <toc-element topic="variable.topic"/>
+        <toc-element topic="class.topic"/>
+        <toc-element topic="property.topic"/>
+        <toc-element topic="method.topic"/>
+        <toc-element topic="accessor.topic"/>
     </toc-element>
 </instance-profile>

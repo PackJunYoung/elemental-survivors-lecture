@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="클래스" id="class">
+
+    <list>
+        <li><path>클래스(Class)</path> 는 스크립트를 작성하는데 기본이 되는 단위입니다.</li>
+        <li>클래스는 기본이 되는 단위인 만큼 매우 많은 기능을 갖고 있습니다.</li>
+        <li>클래스의 기능은 틈틈히 학습하도록하고 이번 페이지에서는 가장 기본적인 부분만 학습하도록 하겠습니다.</li>
+    </list>
+
+    <procedure title="클래스 추가">
+        <step>
+            <img alt="class-1.png" src="class-1.png"/>
+            <p>프로젝트 윈도우에서 <path>+ | C# Script</path> 메뉴를 선택해서 스크립트를 추가합니다.</p>
+        </step>
+        <step>
+            <img alt="class-2.png" src="class-2.png"/>
+            <p>이름을 <path>NewClass</path> 로 추가합니다.</p>
+        </step>
+        <step>
+            <code-block lang="c#">
+                using System.Collections;
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                public class NewClass : MonoBehaviour
+                {
+                    // Start is called before the first frame update
+                    void Start()
+                    {
+                        Debug.Log("NewClass");
+                    }
+
+                    // Update is called once per frame
+                    void Update()
+                    {
+
+                    }
+                }
+            </code-block>
+            <p><path>Start</path> 부분에 로그를 추가합니다.</p>
+        </step>
+        <step>
+            <img alt="class-3.png" src="class-3.png"/>
+            <p>New 이름의 새로운 빈 오브젝트를 추가합니다.</p>
+        </step>
+        <step>
+            <img alt="class-4.png" src="class-4.png"/>
+            <p>New 게임 오브젝트에 <path>NewClass</path> 스크립트를 추가합니다.</p>
+        </step>
+        <step>
+            <img alt="class-5.png" src="class-5.png"/>
+            <p>실행 시, 로그가 정상 출력됩니다.</p>
+        </step>
+        <step>
+            <p>스크립트를 하나 추가하면 동일한 이름의 <path>클래스</path> 가 추가되는 것과 같습니다.</p>
+        </step>
+    </procedure>
+</topic>

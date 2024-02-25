@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="디자인 리소스 살펴보기" id="view-design-resource">
+
+    <list>
+        <li>게임 개발에 사용할 디자인 리소스를 살펴봅니다.</li>
+        <li>디자인 리소스는 에셋 스토어에서 가져온 것으로 대부분 무료 에셋입니다.</li>
+        <li>게임 구성에 필요한 최소한의 리소스만 추가하였습니다.</li>
+    </list>
+
+    <procedure title="Character">
+        <step>
+            <list>
+                <li>캐릭터 폴더에는 조작할 캐릭터와 몬스터, 보스의 디자인 리소스가 포함되어 있습니다.</li>
+                <li>2D 이미지인 스프라이트와 애니메이션을 포함합니다.</li>
+                <li>캐릭터 1종, 몬스터 4종, 보스 4종 입니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="view-design-resource-1.png" src="view-design-resource-1.png"/>
+            <list>
+                <li>옛날 애니메이션처럼 매 프레임의 이미지를 순차적으로 진행시키면서 애니메이션을 출력하는 것을 스프라이트 애니메이션이라고 합니다.</li>
+                <li>각 모션 별로 다양한 스프라이트 애니메이션을 포함합니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="Environment">
+        <step>
+            <list>
+                <li>환경 폴더에는 게임에 사용할 맵이 포함되어 있습니다.</li>
+                <li>맵은 유니티의 기본 기능인 Tilemap 을 사용하여 간단한 형태로 만들었습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="view-design-resource-2.png" src="view-design-resource-2.png"/>
+            <p><path>Environment | Prefab | Tilemap</path> 을 더블클릭하면, 맵 리소스를 확인할 수 있습니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="Item">
+        <step>
+            <list>
+                <li>아이템 폴더에는 게임에 사용할 아이템의 이미지가 포함되어 있습니다.</li>
+                <li>다양한 아이템 이미지를 포함하는 무료 에셋을 사용하였습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="view-design-resource-3.png" src="view-design-resource-3.png"/>
+            <p>여러 리소스 중 물약 이미지와 경험치로 사용할 크리스탈 이미지만 사용합니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="Skill">
+        <step>
+            <list>
+                <li>스킬 폴더에는 게임에 사용할 스킬의 이펙트가 포함되어 있습니다.</li>
+                <li>스킬은 다양한 속성이 있으며 스킬도 스프라이트 애니메이션으로 재생됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="view-design-resource-4.png" src="view-design-resource-4.png"/>
+            <p><path>Skill | PixelArtRPGVFX | Scene | Demo</path> 씬으로 들어가면 스킬 이펙트를 확인할 수 있습니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="UI">
+        <step>
+            <list>
+                <li>유아이 폴더에는 게임에 사용하는 몇가지 유아이를 포함합니다.</li>
+                <li>체력바와 경험치바에 사용합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="view-design-resource-5.png" src="view-design-resource-5.png"/>
+            <p>기본적인 유아이만 포함하는 무료 에셋입니다.</p>
+        </step>
+    </procedure>
+</topic>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="깃 프로젝트 가져오기" id="get-git-project">
+
+    <list>
+        <li>최초 프로젝트는 디자인 리소스만 추가된 상태로 작업을 시작합니다.</li>
+        <li>디자인 리소스가 추가된 프로젝트를 깃을 사용하여 받아옵니다.</li>
+        <li>깃을 통해 받아온 프로젝트의 시작 상태에서 부터 작업을 시작하여 프로젝트를 완성합니다.</li>
+    </list>
+
+    <procedure title="깃으로 원격 저장소 가져오기">
+        <step>
+            <p>소스트리를 실행합니다.</p>
+        </step>
+        <step>
+            <img alt="get-git-project-1.png" src="get-git-project-1.png"/>
+            <p>상단의 메뉴 중 <path>Clone</path> 을 선택합니다.</p>
+        </step>
+        <step>
+            <img alt="get-git-project-2.png" src="get-git-project-2.png"/>
+            <list>
+                <li>소스 경로에 <path>https://github.com/PackJunYoung/elemental-survivors.git</path> 를 지정해 줍니다.</li>
+                <li>그 아래 칸은 내 컴퓨터에 저장할 경로로 자동으로 지정되는데 변경도 가능합니다.</li>
+                <li><path>클론</path> 버튼을 클릭합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="get-git-project-3.png" src="get-git-project-3.png"/>
+            <p>다운로드가 완료되면 지정했던 경로에 프로젝트가 추가된 것을 확인할 수 있습니다.</p>
+        </step>
+        <step>
+            <img alt="get-git-project-4.png" src="get-git-project-4.png"/>
+            <p>이제 깃 허브를 켜고 <path>Add</path> 버튼을 클릭합니다.</p>
+        </step>
+        <step>
+            <img alt="get-git-project-5.png" src="get-git-project-5.png"/>
+            <p>추가된 프로젝트를 지정하고 <path>Open</path> 을 선택합니다.</p>
+        </step>
+        <step>
+            <img alt="get-git-project-6.png" src="get-git-project-6.png"/>
+            <p>위와 같이 프로젝트가 열리면 정상적으로 완료된 것입니다.</p>
+        </step>
+    </procedure>
+</topic>
