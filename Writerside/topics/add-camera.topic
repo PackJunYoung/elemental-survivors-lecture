@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="카메라 추가하기" id="add-camera">
+
+    <procedure title="카메라 추가하기">
+        <step>
+            <img alt="add-camera-1.png" src="add-camera-1.png"/>
+            <p>하이어라키 뷰에서 <path>+ | Camera</path> 메뉴를 선택하여 카메라를 추가합니다.</p>
+        </step>
+        <step>
+            <img alt="add-camera-2.png" src="add-camera-2.png"/>
+            <p>카메라의 위치를 (0, 0, 0)으로 변경합니다.</p>
+        </step>
+        <step>
+            <img alt="add-camera-3.png" src="add-camera-3.png"/>
+            <list>
+                <li>카메라를 드래그해서 hero 에 놓아 자식 오브젝트로 변경합니다.</li>
+                <li>카메라는 캐릭터의 자식 오브젝트가 되어, 캐릭터를 따라 다리도록 설정합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-camera-4.png" src="add-camera-4.png"/>
+            <p>카메라가 추가되었지만, 아직 게임 뷰에는 파란 화면만 출력됩니다.</p>
+        </step>
+        <step>
+            <img alt="add-camera-5.png" src="add-camera-5.png"/>
+            <list>
+                <li>씬 뷰의 우상단에 2D 버튼의 선택 여부에따라 씬 뷰에서 3D 로 보여줄지 2D 로 보여줄지 변경 가능합니다.</li>
+                <li>선택 해제하여 3D로 보도록 변경합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-camera-6.png" src="add-camera-6.png"/>
+            <list>
+                <li>3D 상태로 Camera 오브젝트를 선택하면, 해당 카메라가 렌더링하는 영역의 기즈모를 씬 뷰에서 볼 수 있습니다.</li>
+                <li>카메라가 추가했던 맵과 캐릭터 이외의 영역을 렌더링하고 있는 것을 확인할 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-camera-7.png" src="add-camera-7.png"/>
+            <p>카메라의 위치를 (0, 0, -10)으로 변경합니다.</p>
+        </step>
+        <step>
+            <img alt="add-camera-8.png" src="add-camera-8.png"/>
+            <p>이제 게임 뷰에서 맵과 캐릭터가 정상적으로 보이는 모습을 볼 수 있습니다.</p>
+        </step>
+        <step>
+            <img alt="add-camera-9.png" src="add-camera-9.png"/>
+            <list>
+                <li>카메라 컴포넌트의 <path>Projection</path> 항목을 <path>Orthographic</path> 으로 변경합니다.</li>
+                <li>기존의 Perspective 는 3D 카메라로 멀리 있는 것은 작고, 가까이 있는 것은 크게 렌더링 되는 원근이 적용되는 카메라입니다.</li>
+                <li>저희 게임은 원근이 필요없는 2D 게임이기 때문에 Orthographic 로 변경하여 2D 카메라로 변경합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-camera-10.png" src="add-camera-10.png"/>
+            <list>
+                <li>씬 뷰에서 출력되는 기즈모의 모양도 직선으로 변경된 모습을 볼 수 있습니다.</li>
+                <li>그런데 카메라의 렌더링 영역이 불필요하게 길게 지정되어 있는 것을 볼 수 있습니다.</li>
+                <li>카메라의 불필요한 렌더링 영역을 줄이는 것도 성능에 좋은 영향을 끼칠 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-camera-11.png" src="add-camera-11.png"/>
+            <list>
+                <li>카메라 컴포넌트의 Clipping Planes 에 Far 항목을 20으로 변경하여 불필요한 렌더링 영역을 축소합니다.</li>
+                <li>씬 뷰에 기즈모로도 영역이 줄어든 것을 볼 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-camera-12.png" src="add-camera-12.png"/>
+            <list>
+                <li>이번에는 Size 항목을 3으로 변경합니다.</li>
+                <li>씬 뷰에서 기즈모로 볼 수 있듯이 이 부분은 카메라의 사각형 영역의 크기를 조절하는 항목입니다.</li>
+                <li>렌더링 영역을 줄였기 때문에 실제로 게임 뷰에서 캐릭터의 크기는 좀 더 크게 렌더링 됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-camera-13.png" src="add-camera-13.png"/>
+            <list>
+                <li>이제 2D 버튼을 다시 선택하여 씬 뷰에서 평면으로 보도록 변경합니다.</li>
+                <li>2D 게임이기 때문에 이 상태로 작업을 진행하는게 훨씬 편리합니다.</li>
+            </list>
+        </step>
+    </procedure>
+</topic>

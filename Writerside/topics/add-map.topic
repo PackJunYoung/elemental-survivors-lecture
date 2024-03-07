@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="맵 추가하기" id="add-map">
+
+    <procedure title="부모 자식 관계 알아보기">
+        <step>
+            <img alt="study-parent.png" src="study-parent.png"/>
+            <p><path>+ | 2D Object | Sprites | Square</path> 메뉴를 통해 사각형 오브젝트 하나를 추가합니다.</p>
+        </step>
+        <step>
+            <img alt="study-parent-1.png" src="study-parent-1.png"/>
+            <p>이번엔 <path>+ | 2D Object | Sprites | Circle</path> 메뉴를 통해 원 오브젝트 하나를 추가합니다.</p>
+        </step>
+        <step>
+            <img alt="study-parent-2.png" src="study-parent-2.png"/>
+            <list>
+                <li>Square 의 Position 을 (2, 2, 0)으로 변경합니다.</li>
+                <li>Circle 의 Position 을 (4, 4, 0)으로 변경합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-parent-3.png" src="study-parent-3.png"/>
+            <list>
+                <li>하이어라키 뷰에서 Circle 오브젝트를 드래그하여 Square 에 놓습니다.</li>
+                <li>Square 하위에 Circle 이 있는 구조로 변경됩니다.</li>
+                <li>위와 같은 구조일 때, Square 는 Circle 의 <path>부모(Parent)</path> 가 됩니다.</li>
+                <li>Circle 은 Square 의 <path>자식(child)</path> 이 됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-parent-4.png" src="study-parent-4.png"/>
+            <list>
+                <li>Circle 을 선택하면, 분명 (4, 4, 0)이었던 Position 이 (2, 2, 0)이 된 것을 볼 수 있습니다.</li>
+                <li>부모 자식 관계가 형성되면, 자식 오브젝트는 부모 좌표계를 따르게 됩니다.</li>
+                <li>Square 가 (2, 2, 0)이고 Circle 은 (4, 4, 0)이기 때문에, Circle 은 상대 좌표인 (2, 2, 0)이 됩니다.</li>
+                <li>상대 좌표로 변하는 것은 Position 뿐만 아니라 Rotation 과 Scale 도 전부 적용됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-parent-5.png" src="study-parent-5.png"/>
+            <p>Square 의 위치(Position)를 (4, 4, 0)으로 변경합니다.</p>
+        </step>
+        <step>
+            <img alt="study-parent-6.png" src="study-parent-6.png"/>
+            <list>
+                <li>Square 의 위치가 변경되었지만, Square 와 Circle 의 간격이 동일한 상태인 것을 볼 수 있습니다.</li>
+                <li>부모 자식 관계에서 상대 좌표는 고정되기 때문입니다.</li>
+                <li>Circle 의 위치(상대 위치)는 (2, 2, 0)으로 고정이기 때문에, Square 의 위치가 바뀌더라도 간격은 계속 동일합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-parent-7.png" src="study-parent-7.png"/>
+            <list>
+                <li>이번에는 Circle 을 빈 곳으로 드래그합니다.</li>
+                <li>Square 와 동일 선상에 놓이게 되며, 부모 자식 관계가 해제된 것입니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-parent-8.png" src="study-parent-8.png"/>
+            <list>
+                <li>Circle 의 위치가 (6, 6, 0)이 된 것을 볼 수 있습니다.</li>
+                <li>상대 좌표가 (2, 2, 0)인데, Square 가 (4, 4, 0)으로 변경하였으니 Circle 의 실제 좌표는 (6, 6, 0)으로 변경되었던 것입니다.</li>
+                <li>상대 좌표가 아닌 오브젝트의 실제 좌표를 <path>월드 좌표</path> 라고 부릅니다.</li>
+                <li>부모가 없는 최상위 오브젝트는 항상 월드 좌표로 표기됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-parent-9.png" src="study-parent-9.png"/>
+            <list>
+                <li>부모 자식 관계는 자유자제로 설정이 가능합니다.</li>
+                <li>위와 같은 구조를 <path>트리 구조</path> 라고 부릅니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="프리팹 알아보기">
+        <step>
+            <img alt="study-prefab-1.png" src="study-prefab-1.png"/>
+            <p><path>Assets</path> 하위에 <path>Prefabs</path> 이름의 폴더를 생성합니다.</p>
+        </step>
+        <step>
+            <img alt="study-prefab-2.png" src="study-prefab-2.png"/>
+            <p>하이어라키 뷰에서 빈 오브젝트를 하나 생성합니다.</p>
+        </step>
+        <step>
+            <img alt="study-prefab-3.png" src="study-prefab-3.png"/>
+            <list>
+                <li>하이어라키 뷰에서 생성했던 Square 오브젝트를 Prefabs 폴더로 드래그합니다.</li>
+                <li>큐브 아이콘의 새로운 리소스가 추가되었습니다.</li>
+                <li>위와 같은 형태의 리소스를 <path>프리팹(Prefab)</path> 이라고 부릅니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-prefab-4.png" src="study-prefab-4.png"/>
+            <list>
+                <li>이번에는 프로젝트 뷰에 생성했던 프리팹을 드래그하여, 하이어라키 뷰에 놓습니다.</li>
+                <li>프리팹으로 저장했던 상태의 오브젝트가 동일하게 추가되는 것을 볼 수 있습니다.</li>
+                <li>따라서, 프리팹은 특정 오브젝트의 상태를 리소스로 저장하여 재사용하기 편하게 만드는 것입니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="strudy-prefab-5.png" src="strudy-prefab-5.png"/>
+            <p>프로젝트 뷰의 프리팹을 더블클릭 합니다.</p>
+        </step>
+        <step>
+            <img alt="study-prefab-6.png" src="study-prefab-6.png"/>
+            <list>
+                <li>하이어라키 뷰가 변경된것을 볼 수 있습니다.</li>
+                <li>해당 프리팹의 정보로만 구성된 상태가 되었습니다.</li>
+                <li>프리팹 안으로 들어왔다고 말합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-prefab-7.png" src="study-prefab-7.png"/>
+            <p>Circle (3)을 선택하고 위치를 변경해 봅니다.</p>
+        </step>
+        <step>
+            <img alt="study-prefab-8.png" src="study-prefab-8.png"/>
+            <list>
+                <li>프리팹 내의 변경이 발생할 때, 씬처럼 하이어라키의 프리팹 이름에 * 표시가 추가됩니다.</li>
+                <li>프리팹 변경사항 저장은 씬 뷰의 우상단에 Save 버튼이 존재합니다.</li>
+                <li>Save 버튼을 클릭하여 저장합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-prefab-9.png" src="study-prefab-9.png"/>
+            <list>
+                <li>프리팹 안으로 들어온 상태에서 다시 밖으로 나가는 것은 이름 옆의 &lt; 버튼 선택으로 가능합니다.</li>
+                <li>&lt; 버튼을 클릭하여 밖으로 이동합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-prefab-10.png" src="study-prefab-10.png"/>
+            <list>
+                <li>밖으로 나와보니 GameScene 의 Square 와 Square (1) 모두 프리팹 안에서 변경된 사항이 모두 반영되어 있는 것을 볼 수 있습니다.</li>
+                <li>이와 같이, 프리팹은 동일한 프리팹으로 연결되어 있는 오브젝트들에게 수정사항이 한번에 반영됩니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="맵 배치하기">
+        <step>
+            <img alt="add-map-1.png" src="add-map-1.png"/>
+            <list>
+                <li><path>Arts | Environment | Prefabs</path> 경로에 <path>Tilemap</path> 이라는 이름의 리소스를 사용합니다.</li>
+                <li>미리 맵을 구성한 다음 프리팹으로 저장해 둔 것입니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-map-2.png" src="add-map-2.png"/>
+            <list>
+                <li>해당 프리팹을 드래그하여 하이어라키 뷰에 놓습니다.</li>
+                <li>씬 뷰에도 맵 리소스가 추가된 것을 볼 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-map-4.png" src="add-map-4.png"/>
+            <list>
+                <li>인스펙터 뷰에서 이름 옆에 <path>static</path> 이라는 체크 박스가 있는 것을 볼 수 있습니다.</li>
+                <li>static 은 움직이지 않는 오브젝트에 지정하여, 움직임과 관련된 연산에서 제외함으로써 성능상의 이점을 갖는 기능입니다.</li>
+                <li>맵과 같은 움직이지 않는 환경 오브젝트는 static 으로 지정해주는 것이 좋습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-map-5.png" src="add-map-5.png"/>
+            <list>
+                <li>static 체크 박스를 체크합니다.</li>
+                <li>위와 같은 팝업이 뜨는데 자식 오브젝트도 전부 변경하는지에 대한 팝업입니다.</li>
+                <li><path>Yes, change children</path> 을 선택하여 자식 오브젝트도 전부 static 으로 설정합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-map-3.png" src="add-map-3.png"/>
+            <list>
+                <li>씬이 수정되면 바로바로 저장해서 * 표시를 없애줍니다.</li>
+            </list>
+        </step>
+    </procedure>
+</topic>

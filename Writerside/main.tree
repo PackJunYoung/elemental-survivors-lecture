@@ -41,4 +41,17 @@
         <toc-element topic="method.topic"/>
         <toc-element topic="accessor.topic"/>
     </toc-element>
+    <toc-element topic="part-1.topic">
+        <toc-element topic="chapter1-01.topic">
+            <toc-element topic="add-map.topic"/>
+            <toc-element topic="add-character.topic"/>
+            <toc-element topic="add-camera.topic"/>
+        </toc-element>
+        <toc-element topic="chapter-1-02.topic">
+            <toc-element topic="move-character.topic"/>
+            <toc-element topic="change-direction.topic"/>
+            <toc-element topic="apply-run-animation.topic"/>
+            <toc-element topic="separate-controller.topic"/>
+        </toc-element>
+    </toc-element>
 </instance-profile>

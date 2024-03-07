@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="캐릭터 위치 변경하기" id="move-character">
+
+    <procedure title="스크립트 추가하기">
+        <step>
+            <img alt="move-character-1.png" src="move-character-1.png"/>
+            <list>
+                <li>Assets 폴더에 <path>Scripts</path> 폴더를 추가합니다.</li>
+                <li>Scripts 폴더 하위에 <path>Hero</path> 폴더를 추가합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="move-character-2.png" src="move-character-2.png"/>
+            <p>위 폴더에 <path>HeroController</path> 이름의 스크립트 하나를 추가합니다.</p>
+        </step>
+        <step>
+            <img alt="move-character-3.png" src="move-character-3.png"/>
+            <p>hero 오브젝트에 생성한 스크립트를 드래그하여 스크립트 컴포넌트를 추가합니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="프리팹 해제하기">
+        <step>
+            <img alt="move-character-4.png" src="move-character-4.png"/>
+            <list>
+                <li>hero 오브젝트가 아직 프리팹과 연결되어 있어서 변경된 부분이 지저분하게 표시되고 있습니다.</li>
+                <li>hero 오브젝트는 기존 프리팹과 수정이 동기화될 필요가 없기 때문에 프리팹을 해제해도 됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="move-character-5.png" src="move-character-5.png"/>
+            <p>hero 오브젝트를 오른쪽 마우스로 클릭한 다음 <path>Prefab | Unpack</path> 메뉴를 선택하면 프리팹과 연결이 해제됩니다.</p>
+        </step>
+        <step>
+            <img alt="move-character-6.png" src="move-character-6.png"/>
+            <p>파란색으로 출력되던 부분이 제거되고, 수정사항이 강조되던 부분도 없어졌습니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="Input 알아보기">
+        <step>
+            <list>
+                <li>캐릭터는 사용자의 입력을 받아 움직여야 합니다.</li>
+                <li>먼저 키보드의 방향키 입력을 받아 캐릭터가 움직이는 것을 적용하도록 하겠습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="move-character-7.png" src="move-character-7.png"/>
+            <p>Project Settings 뷰를 보면 <path>Input Manager</path> 탭이 있고, 해당 탭에는 여러가지 Axes 가 지정된 모습을 볼 수 있습니다.</p>
+        </step>
+        <step>
+            <img alt="move-character-8.png" src="move-character-8.png"/>
+            <list>
+                <li>각 항목은 유저의 입력이 표현되는 방식을 뜻합니다.</li>
+                <li>예를 들어, Horizontal 은 좌우 방향키(left, right)의 입력 상태에 따라 값이 달라지는 상태값입니다.</li>
+                <li>상하 방향키의 경우 Vertical 이라는 이름으로 존재합니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                using System.Collections;
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                public class HeroController : MonoBehaviour
+                {
+                    void Update()
+                    {
+                        float horizontal = Input.GetAxis("Horizontal");
+                        float vertical = Input.GetAxis("Vertical");
+                        Debug.Log("horizontal:" + horizontal + " , " + "vertical:" + vertical);
+                    }
+                }
+
+            </code-block>
+            <list>
+                <li>Input.GetAxis 메서드를 사용하여, 해당 입력 상태값을 가져올 수 있습니다.</li>
+                <li>GetAxis 메서드의 반환 타입은 float 타입이며, float 타입은 3.14와 같이 소수점까지 표현이 가능한 숫자형 타입입니다.</li>
+                <li>각각의 반환값을 horizontal, vertical 변수에 할당하고, 로그로 출력합니다.</li>
+                <li>Update 는 매 프레임마다 호출되기 때문에 매 프레임마다 입력 상태를 로그로 출력합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="move-character-9.png" src="move-character-9.png"/>
+            <list>
+                <li>실행 후, 키보드의 방향키를 눌러보면 값이 변경된 로그가 출력되는 것을 확인할 수 있습니다.</li>
+                <li>-1 ~ 1 사이의 값이 키를 누르고 있음에 따라 누적되며 값이 변하는 것을 볼 수 있습니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="타입 추론 알아보기">
+        <step>
+            <code-block lang="c#">
+                float horizontal = Input.GetAxis("Horizontal");
+                float vertical = Input.GetAxis("Vertical");
+            </code-block>
+            <list>
+                <li>변수를 선언할 때, 항상 변수의 타입을 같이 지정해주고 있었습니다.</li>
+                <li>하지만, 타입 추론이 가능한 상황이면 특정 타입이 아닌 <path>var</path> 타입으로 지정이 가능합니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                var message1 = "message!";
+                var message2;
+            </code-block>
+            <list>
+                <li>위와 같은 코드의 경우, message1은 문자열 타입의 초기값이 설정되어 있기 때문에 var 로 선언하더라도 string 타입으로 추론됩니다.</li>
+                <li>message2 변수의 경우에는 초기값이 없이 선언만 되었기 때문에, 타입을 추론할 수 없습니다. 따라서, 에러가 발생합니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                var message1 = "message!";
+                string message2;
+            </code-block>
+            <list>
+                <li>message2와 같이 타입을 추론할 수 없는 경우에는 명시적으로 타입을 선언해 주어야 합니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                var horizontal = Input.GetAxis("Horizontal");
+                var vertical = Input.GetAxis("Vertical");
+            </code-block>
+            <list>
+                <li>GetAxis 메서드도 반환값이 float 타입으로 정해져있기 때문에 해당 로직에서도 타입 추론이 가능합니다.</li>
+                <li>변수를 선언할 때, 대부분의 경우에 타입 추론이 가능하기 때문에 var 타입을 사용하면 편리합니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="보간 문자열 알아보기">
+        <step>
+            <code-block lang="c#">
+                Debug.Log("horizontal:" + horizontal + " , " + "vertical:" + vertical);
+            </code-block>
+            <list>
+                <li>Debug.Log 메서드의 매개변수는 문자열(string) 타입이고, 문자열은 + 연산자를 사용하여 연결할 수 있습니다.</li>
+                <li>위 로직의 경우 문자열 사이에 변수의 값(horizontal, vertical)을 끼워 넣기 위해 사이사이에 + 연산자를 사용하였습니다.</li>
+                <li>위와 같은 로직에 보간 문자열을 사용하면 훨씬 깔끔하게 문자열을 생성할 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                Debug.Log($"horizontal:{horizontal} , vertical:{vertical}");
+            </code-block>
+            <list>
+                <li>보간 문자열은 문자열을 시작할 때, $" 로 시작하여, 보간 문자열임을 설정할 수 있습니다.</li>
+                <li>보간 문자열은 중간에 중괄호를 사용하고, 그 안에 변수를 추가함으로써 변수의 값을 문자열에 쉽게 끼워 넣을 수 있습니다.</li>
+                <li>보간 문자열을 사용하면 중간중간에 + 를 넣지 않고 선언이 가능하기 때문에 훨씬 가독성이 좋은 코드가 됩니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="deltaTime 알아보기">
+        <step>
+            <img alt="move-character-10.png" src="move-character-10.png"/>
+            <list>
+                <li>Update 는 매 프레임마다 호출되며, 성능에 따라 1초 동안 처리되는 프레임의 수가 달라집니다.</li>
+                <li>실행 후, 게임 뷰의 Stats 버튼을 선택하면 프레임의 변화를 확인할 수 있습니다.</li>
+                <li>FPS 가 초당 프레임이며, 지금은 게임의 내용이 없기 때문에 1초에 약 508회의 프레임이 처리됩니다.</li>
+                <li>옆에 출력되는 2.0ms 는 1프레임이 처리되는 동안 걸리는 시간이고 이것을 <path>deltaTime</path> 이라고 부릅니다.</li>
+                <li>이 값은 고정된 값이 아니라 끊임없이 변경되는 모습을 볼 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                using System.Collections;
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                public class HeroController : MonoBehaviour
+                {
+                    void Update()
+                    {
+                        var horizontal = Input.GetAxis("Horizontal");
+                        var vertical = Input.GetAxis("Vertical");
+                        Debug.Log($"deltaTime: {Time.deltaTime}");
+                    }
+                }
+
+            </code-block>
+            <list>
+                <li>코드에서 deltaTime 은 <path>Time.deltaTime</path> 을 통해 값을 가져올 수 있습니다.</li>
+                <li>해당 값을 로그로 출력시키는 코드를 추가합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="move-character-11.png" src="move-character-11.png"/>
+            <p>실행 시, 로그가 출력됩니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="캐릭터 위치 변경하기">
+        <step>
+            <img alt="move-character-12.png" src="move-character-12.png"/>
+            <list>
+                <li>오브젝트의 위치를 결정하는 것은 트랜스폼 컴포넌트의 Position 항목입니다.</li>
+                <li>Position 의 각 항목은 소수점이 가능한 숫자로 이전에 살펴보았던 float 타입입니다.</li>
+                <li>결국 Position 은 float 타입의 x, y, z 세 값으로 구성되는데 이 값의 타입을 <path>Vector3</path> 라고 부릅니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                void Update()
+                {
+                    var horizontal = Input.GetAxis("Horizontal");
+                    var vertical = Input.GetAxis("Vertical");
+                    var direction = new Vector3(horizontal, vertical, 0f);
+                    Debug.Log($"direction: {direction}");
+                }
+            </code-block>
+            <list>
+                <li>horizontal 은 -1 ~ 1 사이의 좌우(x)에 대한 입력값이고 vertical 은 -1 ~ 1 사이의 상하(y)에 대한 입력값이기 때문에 두 값으로 Vector3 를 만들면 입력한 방향값이 됩니다.</li>
+                <li>이 프로젝트는 2D 게임이라 z 값이 변경될 필요가 없기 때문에 z 항목에는 0을 줍니다.</li>
+                <li>0 이 아니라 0f 로 입력하는 것은 이 매개변수의 타입은 float 타입으로 0이 float 타입의 0이라고 명시해준 부분입니다.</li>
+                <li>Vector3 앞에 new 가 붙어있는 것은 Vector3 라는 타입은 참조 타입이기 때문입니다. 참조 타입에 대해서는 추후에 알아보도록 하겠습니다.</li>
+                <li>Vector3 를 direction 변수에 할당하고, 해당 변수를 로그로 출력합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="move-character-13.png" src="move-character-13.png"/>
+            <list>
+                <li>실행 후, 방향키를 입력하면 입력에 따른 방향의 값이 로그로 출력되는 것을 볼 수 있습니다.</li>
+                <li>이제 해당 방향으로 캐릭터의 위치를 변경시키면 됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                using System.Collections;
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                public class HeroController : MonoBehaviour
+                {
+                    void Update()
+                    {
+                        var horizontal = Input.GetAxis("Horizontal");
+                        var vertical = Input.GetAxis("Vertical");
+                        var direction = new Vector3(horizontal, vertical, 0f);
+                        transform.position = transform.position + direction;
+                    }
+                }
+            </code-block>
+            <list>
+                <li>위치는 결국 Transform 컴포넌트의 Position 값이므로, transform.position 을 변경하여 위치를 변경시킬 수 있습니다.</li>
+                <li>transform.position 의 타입은 Vector3로 이 타입도 사칙연산이 가능합니다.</li>
+                <li>현재 값에서 입력값인 direction 을 더한 값을 다시 대입해줍니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="move-character-14.png" src="move-character-14.png"/>
+            <list>
+                <li>실행 후, 방향키를 입력하면 캐릭터가 움직이는데 너무 빠르게 이동하는것을 볼 수 있습니다.</li>
+                <li>사실 이 direction 값만큼의 이동은 매 초마다 이동이 진행되어야 적당한 분량입니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                void Update()
+                {
+                    var horizontal = Input.GetAxis("Horizontal");
+                    var vertical = Input.GetAxis("Vertical");
+                    var direction = new Vector3(horizontal, vertical, 0f);
+                    transform.position = transform.position + direction * Time.deltaTime;
+                }
+            </code-block>
+            <list>
+                <li>Update 는 매 프레임마다 호출되기 때문에, 이전 코드는 매 프레임마다 direction 만큼이 이동이 발생했던 것입니다.</li>
+                <li>초당 direction 만큼의 이동을 발생시키려면 Time.deltaTime 을 곱해주면 됩니다.</li>
+                <li>실행 후 캐릭터를 움직여보면, 훨씬 느리게 캐릭터가 이동하는 모습을 볼 수 있습니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="복합 할당 연산자 알아보기">
+        <step>
+            <code-block lang="c#">
+                transform.position = transform.position + direction * Time.deltaTime;
+            </code-block>
+            <list>
+                <li>위 코드에서 transform.position 값에 특정 값을 더한 결과를 다시 transform.position 에 할당하는 것을 볼 수 있습니다.</li>
+                <li>이것은 transform.position 에 완전히 새로운 값을 대입하는 것이 아닌 변화량만큼 변화를 주는 처리로 복합 할당 연산자를 사용하면 훨씬 깔끔하게 표현이 가능합니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                transform.position += direction * Time.deltaTime;
+            </code-block>
+            <list>
+                <li>위와 같은 코드로 변경이 가능하며, transform.position 이 중복해서 입력하지 않아도 되기 때문에 가독성이 좋습니다.</li>
+                <li>덧셈 뿐만 아니라 기본적인 사칙연산에 대해서는 모두 동일하게 처리가 가능합니다.</li>
+            </list>
+        </step>
+    </procedure>
+</topic>

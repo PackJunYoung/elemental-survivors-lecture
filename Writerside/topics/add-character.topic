@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="캐릭터 추가하기" id="add-character">
+
+    <procedure title="캐릭터 추가하기">
+        <step>
+            <img alt="add-character-1.png" src="add-character-1.png"/>
+            <list>
+                <li>캐릭터 리소스는 <path>Arts | Character | Prefabs | hero</path> 에 있습니다.</li>
+                <li>역시 미리 구성한 다음 프리팹으로 저장해 둔 것입니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-character-2.png" src="add-character-2.png"/>
+            <p>하이어라키 뷰로 드래그하여 오브젝트를 추가합니다.</p>
+        </step>
+        <step>
+            <img alt="add-character-3.png" src="add-character-3.png"/>
+            <list>
+                <li>캐릭터 오브젝트의 구조를 살펴보도록 하겠습니다.</li>
+                <li>최상단에 hero 오브젝트가 있고, 자식으로 img 오브젝트가 있습니다.</li>
+                <li>hero 오브젝트에는 Transform 을 제외하고 아무런 컴포넌트도 없는 것을 볼 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-character-4.png" src="add-character-4.png"/>
+            <list>
+                <li>img 오브젝트에는 Sprite Renderer 와 Animator 두 개의 컴포넌트가 있는 것을 볼 수 있습니다.</li>
+                <li>Sprites-Default (Material) 은 Sprite Renderer 에 설정된 머티리얼(Material) 정보가 출력되는 것으로 컴포넌트는 아닙니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="스프라이트 알아보기">
+        <step>
+            <img alt="study-sprite-1.png" src="study-sprite-1.png"/>
+            <list>
+                <li>Sprite Renderer 컴포넌트는 스프라이트 이미지를 렌더링 해주는 컴포넌트입니다.</li>
+                <li>씬 뷰에 보이는 캐릭터 이미지가 Sprite Renderer 가 출력해주는 이미지 입니다.</li>
+                <li>이미지는 Sprite 항목에 설정된 이미지가 출력됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-sprite-2.png" src="study-sprite-2.png"/>
+            <list>
+                <li>Sprite 에 설정된 Idle_0 을 선택하면 프로젝트 뷰가 이동되는 것을 볼 수 있습니다.</li>
+                <li><path>Arts | Character | Hero | Sprites</path> 경로로 이동되며, 다양한 리소스가 있는 것을 볼 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-sprite-3.png" src="study-sprite-3.png"/>
+            <list>
+                <li>Idle 리소스를 선택해보면, 좌우로 긴 이미지를 볼 수 있습니다.</li>
+                <li>스프라이트는 한장의 이미지를 분리해서 여러장의 이미지처럼 사용할 수 있습니다.</li>
+                <li>Idle 은 한장의 이미지이고, 이것을 분리해서 Idle_0, Idle_1, ... 과 같이 여러개로 분리한 것입니다.</li>
+                <li>분리된 이미지는 각각 한장의 이미지처럼 사용될 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-sprite-4.png" src="study-sprite-4.png"/>
+            <list>
+                <li>각각의 이미지를 별도의 이미지처럼 Sprite Renderer 에 지정할 수 있습니다.</li>
+                <li>드래그를 통해 설정할 수 있으며, 다른 이미지로 변경해봅니다.</li>
+                <li>유사한 이미지라 큰 차이는 없지만, 변경된 모습을 씬 뷰에서 확인할 수 있습니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="프리팹 되돌리기">
+        <step>
+            <img alt="study-sprite-6.png" src="study-sprite-6.png"/>
+            <list>
+                <li>변경시킨 부분이 파란색 표시와 함께 두껍게 변경된 것을 볼 수 있습니다.</li>
+                <li>hero 오브젝트는 프리팹으로 이것은 프리팹과는 다른 수정사항이 발생했다는 표시입니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-sprite-7.png" src="study-sprite-7.png"/>
+            <list>
+                <li>우상단의 <path>... | Modified Component</path> 메뉴로 들어가면 두 가지 메뉴가 있는 것을 볼 수 있습니다.</li>
+                <li>위 메뉴는 프리팹이면서 해당 컴포넌트에 수정사항이 발생했을 때에만 존재합니다.</li>
+                <li><path>Apply to Prefab 'hero'</path> 메뉴는 수정사항은 프리팹에 적용시키는 것입니다.</li>
+                <li><path>Revert</path> 메뉴는 수정사항을 폐기하고 다시 프리팹의 상태로 되돌리는 것입니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-sprite-8.png" src="study-sprite-8.png"/>
+            <list>
+                <li>Revert 를 선택합니다.</li>
+                <li>표시가 사라지고 스프라이트도 다시 Idle_0 으로 변경된 것을 볼 수 있습니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="애니메이션 알아보기">
+        <step>
+            <img alt="study-animation-1.png" src="study-animation-1.png"/>
+            <p>게임을 실행하면 아직 카메라가 없어서 게임 뷰에서는 위와 같은 모습으로 출력됩니다.</p>
+        </step>
+        <step>
+            <img alt="study-animation-2.png" src="study-animation-2.png"/>
+            <p>하지만, 씬 뷰에서는 상태를 볼 수 있고, 캐릭터가 움직이는 것처럼 이미지가 변하는 것을 볼 수 있습니다.</p>
+        </step>
+        <step>
+            <img alt="study-animation-3.png" src="study-animation-3.png"/>
+            <list>
+                <li>img 오브젝트를 선택하고 인스펙터 뷰를 보면, Sprite Renderer 컴포넌트의 Sprite 항목이 계속 변경되는 것을 볼 수 있습니다.</li>
+                <li>Sprite 가 계속 변경되기 때문에 이미지가 변경되고, 움직이는 것처럼 보이는 것 입니다.</li>
+                <li>이 동작은 Animator 컴포넌트에 위와 같이 설정이 되어있기 때문입니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-animation-4.png" src="study-animation-4.png"/>
+            <list>
+                <li><path>Window | Animation | Animation</path> 메뉴를 선택하여 애니메이션 뷰를 가져옵니다.</li>
+                <li>팝업으로 생성된 윈도우를 드래그하여, 다른 영역의 탭으로 추가합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-animation-5.png" src="study-animation-5.png"/>
+            <list>
+                <li>애니메이션 뷰를 보면, 시간별로 점이 찍혀있는 것을 볼 수 있습니다.</li>
+                <li>각 점이 변경을 발생시키는 지점이며 <path>애니메이션 키</path> 라고 부릅니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-animation-6.png" src="study-animation-6.png"/>
+            <list>
+                <li>시간 부분을 선택하거나 드래그하면, 해당 영역이 파란색으로 바뀌는 것을 볼 수 있습니다.</li>
+                <li>그리고 왼쪽의 <path>Preview</path> 항목의 버튼도 선택됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-animation-7.png" src="study-animation-7.png"/>
+            <list>
+                <li>드래그할 때마다, Sprite Renderer 의 Sprite 항목이 변경되는 것을 볼 수 있습니다.</li>
+                <li>Sprite 항목을 변경하는 애니메이션 키가 저장되어 있는 것 입니다.</li>
+                <li>씬 뷰에서도 변하는 모습을 볼 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-animation-8.png" src="study-animation-8.png"/>
+            <list>
+                <li>Preview 버튼을 선택 해제하여 미리보기를 끝낼 수 있습니다.</li>
+                <li>옆의 재생 버튼을 통해 실제와 동일하게 애니메이션을 재생되는 모습을 확인할 수도 있습니다.</li>
+                <li>빨간색 동그라미 버튼은 녹화 버튼으로 애니메이션 키를 설정하는 부분입니다.</li>
+                <li>녹화를 통해 애니메이션을 설정할 수 있지만, 본 프로젝트에서는 설정된 애니메이션만 사용하고 애니메이션을 추가하거나 변경하지는 않겠습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="study-animation-9.png" src="study-animation-9.png"/>
+            <list>
+                <li>Preview 하단의 Idle 이라고 되어있는 드롭박스를 선택하면, 여러가지 애니메이션 이름을 볼 수 있습니다.</li>
+                <li>이 캐릭터의 애니메이터에 설정된 애니메이션들이 나열되며, 선택하고 미리보기할 수 있습니다.</li>
+                <li>이 목록은 Animator 윈도우에 설정된 항목들이며 이부분은 추후에 알아보도록 하겠습니다.</li>
+            </list>
+        </step>
+    </procedure>
+</topic>
