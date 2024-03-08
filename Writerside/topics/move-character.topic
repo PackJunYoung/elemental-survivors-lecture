@@ -220,7 +220,7 @@
                 <li>horizontal 은 -1 ~ 1 사이의 좌우(x)에 대한 입력값이고 vertical 은 -1 ~ 1 사이의 상하(y)에 대한 입력값이기 때문에 두 값으로 Vector3 를 만들면 입력한 방향값이 됩니다.</li>
                 <li>이 프로젝트는 2D 게임이라 z 값이 변경될 필요가 없기 때문에 z 항목에는 0을 줍니다.</li>
                 <li>0 이 아니라 0f 로 입력하는 것은 이 매개변수의 타입은 float 타입으로 0이 float 타입의 0이라고 명시해준 부분입니다.</li>
-                <li>Vector3 앞에 new 가 붙어있는 것은 Vector3 라는 타입은 참조 타입이기 때문입니다. 참조 타입에 대해서는 추후에 알아보도록 하겠습니다.</li>
+                <li>Vector3 앞에 new 가 붙어있는 것은 Vector3 라는 타입은 참조 타입이기 때문입니다. 참조 타입에 대해서는 아래에서 알아보도록 하겠습니다.</li>
                 <li>Vector3 를 direction 변수에 할당하고, 해당 변수를 로그로 출력합니다.</li>
             </list>
         </step>
@@ -296,6 +296,157 @@
             <list>
                 <li>위와 같은 코드로 변경이 가능하며, transform.position 이 중복해서 입력하지 않아도 되기 때문에 가독성이 좋습니다.</li>
                 <li>덧셈 뿐만 아니라 기본적인 사칙연산에 대해서는 모두 동일하게 처리가 가능합니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="원시 타입 알아보기">
+        <step>
+            <code-block lang="c#">
+                int number = 0;
+                string message = "hi";
+                float pi = 3.14f;
+            </code-block>
+            <list>
+                <li>지금까지 변수의 데이터 타입으로 int, string, float 를 알아보았습니다.</li>
+                <li>각 데이터 타입은 정수, 문자열, 소수를 나타냅니다.</li>
+                <li>위 타입은 c# 언어에서 기본적으로 제공하는 데이터 타입이며, <path>원시 타입</path> 이라고 부릅니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                int number = 0;
+                int number2 = number;
+            </code-block>
+            <list>
+                <li>변수에는 타입이 있고, 변수에 변수의 값을 대입하는 경우에는 두 변수가 같은 타입이어야 합니다.</li>
+                <li>변수에 변수의 값을 대입하는 경우가 아니고 윗 줄과 같이 값을 바로 대입할 수도 있습니다.</li>
+                <li>값을 바로 대입하는 경우 값 부분을 <path>리터럴</path> 이라고 부릅니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                var number = 0;
+                var message = "hi";
+                var pi = 3.14f;
+            </code-block>
+            <list>
+                <li>리터럴은 그 자체로도 타입을 나타냅니다.</li>
+                <li>단순한 숫자는 정수로 int 타입을 나타냅니다.</li>
+                <li>"" 작은따옴표로 구성된 리터럴은 문자열로 string 타입을 나타냅니다.</li>
+                <li>숫자에 f가 붙은 것은 소수로 float 타입을 나타냅니다.</li>
+                <li>리터럴만 보고도 타입을 알 수 있기때문에 전부 var 타입을 사용하고 타입 추론을 적용시킬 수 있습니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="참조 타입 알아보기">
+        <step>
+            <code-block lang="c#">
+                string fruitName1 = "apple";
+                int fruitCount1 = 3;
+                string fruitName2 = "banana";
+                int fruitCount2 = 2;
+            </code-block>
+            <list>
+                <li>원시 타입은 한개의 변수에 하나의 하나의 값만 할당이 가능합니다.</li>
+                <li>위와 같이 <path>과일의 이름, 과일의 개수</path> 두 개의 값을 가진 타입을 추가해서, 두 가지 과일을 표현하고 싶을 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                using System.Collections;
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                class Fruit
+                {
+                    public string name;
+                    public int count;
+                }
+
+                public class HeroController : MonoBehaviour
+                {
+                    void Start()
+                    {
+                        string fruitName1 = "apple";
+                        int fruitCount1 = 3;
+                        string fruitName2 = "banana";
+                        int fruitCount2 = 2;
+                    }
+
+                    void Update()
+                    {
+                        var horizontal = Input.GetAxis("Horizontal");
+                        var vertical = Input.GetAxis("Vertical");
+                        var direction = new Vector3(horizontal, vertical, 0f);
+                        transform.position += direction * Time.deltaTime;
+                    }
+                }
+
+            </code-block>
+            <list>
+                <li>이런 경우에 class 를 선언하여, 새로운 타입을 생성할 수 있습니다.</li>
+                <li>새로 추가된 Fruit 라는 이름의 타입(클래스)은 name 문자열 값과 count 정수 값을 가집니다.</li>
+                <li>위와 같이 언어에서 기본적으로 제공하는 원시 타입이 아닌 class 를 통해 정의된 타입을 <path>참조 타입</path> 혹은 <path>객체 타입</path> 이라고 부릅니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                void Start()
+                {
+                    var apple = new Fruit();
+                    apple.name = "apple";
+                    apple.count = 3;
+                }
+            </code-block>
+            <list>
+                <li>참조 타입은 <path>new 클래스 이름()</path> 표현을 통해 값을 생성할 수 있습니다.</li>
+                <li>값을 생성한 다음 name 과 count 변수(프로퍼티)에 값을 대입하였습니다.</li>
+                <li>Fruit() 는 <path>생성자</path> 라고 부르며, 매개변수가 하나도 없는 <path>기본 생성자</path> 입니다.</li>
+                <li>아무런 생성자도 추가하지 않은 상태에서는 기본적으로 기본 생성자가 제공됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                class Fruit
+                {
+                    public string name;
+                    public int count;
+
+                    public Fruit(string n, int c)
+                    {
+                        name = n;
+                        count = c;
+                    }
+                }
+            </code-block>
+            <list>
+                <li>위와 같이 생성자를 추가할 수 있습니다.</li>
+                <li>매개변수를 받는 생성자로 이 생성자를 사용하면 생성과 동시에 내부의 값을 설정할 수 있습니다.</li>
+                <li>생성자가 하나라도 추가되면, 기본으로 제공되던 기본 생성자는 사용할 수 없게 됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                void Start()
+                {
+                    var apple = new Fruit("apple", 3);
+                    var banana = new Fruit("banana", 2);
+                }
+            </code-block>
+            <list>
+                <li>이제 새로 추가한 생성자를 사용해서 위와 같이 간단하게 참조 변수를 생성하고 바로 값을 설정할 수 있습니다.</li>
+                <li>참조 변수도 생성자를 통해 바로 값을 대입해주는 경우 타입을 추론할 수 있기 때문에 var 타입을 사용할 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                var direction = new Vector3(horizontal, vertical, 0f);
+            </code-block>
+            <list>
+                <li>결국 class 로 작성하는 참조 타입은 자주 사용되는 변수들의 그룹을 하나의 새로운 타입으로 정의한 것입니다.</li>
+                <li>Vector3 역시, float 타입의 변수 x, y, z를 가지는 타입입니다.</li>
             </list>
         </step>
     </procedure>

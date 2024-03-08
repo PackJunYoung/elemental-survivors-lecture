@@ -5,5 +5,145 @@
        xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
        title="캐릭터 방향 변경하기" id="change-direction">
 
-    <p>Start typing here...</p>
+    <procedure title="방향 변경하기">
+        <step>
+            <img alt="change-direction-1.png" src="change-direction-1.png"/>
+            <list>
+                <li>캐릭터를 이동시키다보면 부자연스러운 부분이 있는데, 왼쪽으로 이동할 때에도 오른쪽을 바라보고 있다는 것 입니다.</li>
+                <li>왼쪽으로 이동할 때에는 캐릭터가 왼쪽을 바라보도록 수정하겠습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="change-direction-2.png" src="change-direction-2.png"/>
+            <list>
+                <li>트랜스폼의 Rotation 을 (0, 180, 0)으로 변경합니다.</li>
+                <li>캐릭터가 왼쪽을 바라보도록 바뀐것을 볼 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="change-direction-3.png" src="change-direction-3.png"/>
+            <list>
+                <li>이번에는 Rotation 은 다시 (0, 0, 0)으로 변경하고, Scale 을 (-1, 1, 1)로 변경합니다.</li>
+                <li>이전과 동일하게 왼쪽을 바라보는 모습을 볼 수 있습니다.</li>
+                <li>2D 이미지이기 때문에 -스케일을 적용하면 좌우 반전이 되면서 회전과 동일한 효과를 입힐 수 있습니다.</li>
+                <li>둘 중 아무거나 사용하여 회전을 적용할 수 있는데, Scale 을 사용해서 적용시키도록 하겠습니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="if 문 알아보기">
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                using System.Collections;
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                public class HeroController : MonoBehaviour
+                {
+                    void Update()
+                    {
+                        var horizontal = Input.GetAxis("Horizontal");
+                        var vertical = Input.GetAxis("Vertical");
+                        var direction = new Vector3(horizontal, vertical, 0f);
+                        transform.position += direction * Time.deltaTime;
+
+                        if (horizontal < 0f)
+                        {
+                            transform.localScale = new Vector3(-1f, 1f, 1f);
+                        }
+                        else
+                        {
+                            transform.localScale = new Vector3(1f, 1f, 1f);
+                        }
+                    }
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>위에서 봤듯이 캐릭터가 왼쪽으로 이동할때는 x 스케일을 -1, 오른쪽으로 이동할때는 1 값으로 변경해주어야 합니다.</li>
+                <li>캐릭터가 왼쪽으로 이동하는지, 오른쪽으로 이동중인지는 horizontal 값의 부호를 보고 알 수 있습니다.</li>
+                <li>이렇듯 상황에 따라 다르게 처리하는 부분을 <path>분기 처리</path> 라고 부릅니다.</li>
+                <li>가장 간단하게 분기 처리를 하는 방법은 <path>if 문</path> 을 사용하는 것입니다.</li>
+                <li>if 문은 위에서 보듯이 if 뒤 괄호안에 특정 조건을 명시해 줍니다.</li>
+                <li>if 문 이후에 오는 else 문은 if 문의 조건에 부합하지 않을 경우 해당 로직이 동작합니다.</li>
+                <li>if 문만 있고 else 문은 없을수도 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="move-direction-4.png" src="move-direction-4.png"/>
+            <list>
+                <li>실행 후 캐릭터를 왼쪽으로 이동시키면, 캐릭터가 왼쪽을 보도록 변경됩니다.</li>
+                <li>하지만, 좌우변경없이 위로 이동하거나 이동을 멈출경우 다시 오른쪽을 바라보는것을 확인할 수 있습니다.</li>
+                <li>위의 상황과 같이 horizontal 값이 0인 경우에는 특정 방향을 바라보는 것이 아니라 마지막 방향을 유지해야 합니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                void Update()
+                {
+                    var horizontal = Input.GetAxis("Horizontal");
+                    var vertical = Input.GetAxis("Vertical");
+                    var direction = new Vector3(horizontal, vertical, 0f);
+                    transform.position += direction * Time.deltaTime;
+
+                    if (horizontal != 0f)
+                    {
+                        if (horizontal < 0f)
+                        {
+                            transform.localScale = new Vector3(-1f, 1f, 1f);
+                        }
+                        else
+                        {
+                            transform.localScale = new Vector3(1f, 1f, 1f);
+                        }
+                    }
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>horizontal 값이 0이 아닐경우에만 해당 로직에 진입하도록 새로운 if 문으로 기존 로직을 감싸줍니다.</li>
+                <li>코드에서 = 한 개는 변수에 값을 대입하는데 사용합니다.</li>
+                <li>== 두 개는 좌우의 값이 동등한지 비교하는 비교 연산자 입니다.</li>
+                <li>!= 이런 표현은 위와 반대로 좌우의 값이 다른것을 비교하는 연산자 입니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="move-direction-5.png" src="move-direction-5.png"/>
+            <p>이제 위아래로만 이동하거나 이동을 멈춰도 마지막 방향을 유지하는 것을 볼 수 있습니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="조건 연산자 알아보기">
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                if (horizontal < 0f)
+                {
+                    transform.localScale = new Vector3(-1f, 1f, 1f);
+                }
+                else
+                {
+                    transform.localScale = new Vector3(1f, 1f, 1f);
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>위 로직에서 if 문과 else 문에서 다른 부분은 Vector3의 x 값 뿐입니다.</li>
+                <li>이렇듯 조건문에 대한 차이가 작을 때는 조건 연산자를 사용하여 간단하게 작성할 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                if (horizontal != 0f)
+                {
+                    transform.localScale = new Vector3(horizontal < 0f ? -1f : 1f, 1f, 1f);
+                }
+                ]]>
+            </code-block>
+            <p>위와 같이 <path>(조건) ? (조건이 참일때 값) : (조건이 거짓일때 값)</path> 형태로 간단하게 조건문을 작성할 수 있습니다.</p>
+        </step>
+    </procedure>
 </topic>

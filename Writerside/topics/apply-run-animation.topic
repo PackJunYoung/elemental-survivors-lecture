@@ -5,5 +5,265 @@
        xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
        title="달리는 애니메이션 적용하기" id="apply-run-animation">
 
-    <p>Start typing here...</p>
+    <procedure title="애니메이터 알아보기">
+        <step>
+            <img alt="apply-run-animation.png" src="apply-run-animation.png"/>
+            <p><path>Window | Animation | Animator</path> 메뉴를 선택하여, 애니메이터 뷰를 확인합니다.</p>
+        </step>
+        <step>
+            <img alt="apply-run-animation-2.png" src="apply-run-animation-2.png"/>
+            <list>
+                <li>다른 뷰의 영역에 탭으로 추가한 다음 <path>hero | img</path> 를 선택하면, 위와 같은 화면을 볼 수 있습니다.</li>
+                <li>이전에 애니메이션 뷰에서 볼 수 있었던 애니메이션 목록을 볼 수 있습니다.</li>
+                <li>해당 윈도우는 해당 애니메이터의 애니메이션 목록을 설정할 수 있는 곳입니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="apply-run-animation-3.png" src="apply-run-animation-3.png"/>
+            <list>
+                <li>이렇게 설정된 리소스는 <path>애니메이터 컨트롤러</path> 라고 부르며, Controller 항목에 설정된 <path>Hero_anim</path> 이 이 캐릭터에 설정된 애니메이터 컨트롤러 입니다.</li>
+                <li>Hero_anim 을 클릭하면, 프로젝트 뷰에서 해당 리소스가 포커스 됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="apply-run-animation-4.png" src="apply-run-animation-4.png"/>
+            <list>
+                <li>프로젝트 뷰를 보면 Hero_anim 과는 아이콘이 다른 다양한 리소스들을 추가로 볼 수 있습니다.</li>
+                <li>나머지 리소스들은 애니메이션 리소스로 실제 애니메이션 뷰에서 봤던 애니메이션 키가 찍혀있는 리소스입니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="apply-run-animation-5.png" src="apply-run-animation-5.png"/>
+            <list>
+                <li>프로젝트 뷰의 애니메이션 리소스를 애니메이터 뷰로 드래그 하면 해당 애니메이션을 애니메이터 컨트롤러에 추가할 수 있습니다.</li>
+                <li>추가된 애니메이션의 사각형 모양을 <path>노드</path> 라고 부릅니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="apply-run-animation-6.png" src="apply-run-animation-6.png"/>
+            <list>
+                <li>노드에서 오른쪽 마우스 클릭하면, 메뉴가 나오고 Delete 를 선택하면 해당 노드가 제거됩니다.</li>
+                <li>Set as Layer Default State 메뉴를 선택하면 <path>초기 노드</path> 로 지정됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="apply-run-animation-7.png" src="apply-run-animation-7.png"/>
+            <list>
+                <li>Idle 노드는 혼자 노란색인데 초기 노드로 지정되어 있기 때문입니다.</li>
+                <li>초기 노드는 시작 시, 처음으로 진행하는 애니메이션을 말합니다.</li>
+                <li>따라서 초기 노드는 한 개만 설정이 가능합니다.</li>
+                <li>Idle 은 가만히 숨쉬고 서있는 상태의 애니메이션을 말하며 초기 노드로 적합합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="apply-run-animation-8.png" src="apply-run-animation-8.png"/>
+            <list>
+                <li>프로젝트 뷰에서 Idle 리소스를 선택하면, <path>Loop Time</path> 이라는 항목을 볼 수 있습니다.</li>
+                <li>이것은 해당 애니메이션이 계속 반복 재생되는 애니메이션임을 설정한 부분입니다.</li>
+                <li>체크 해제 된다면, 애니메이션이 한번만 진행하고 멈춥니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="apply-run-animation-9.png" src="apply-run-animation-9.png"/>
+            <list>
+                <li>Idle 과 Take Hit 노드 사이에 화살표가 이어져있는 것을 볼 수 있습니다.</li>
+                <li>이런 화살표는 좀전의 오른쪽 마우스 메뉴에서 <path>Make Transition</path> 항목으로 설정할 수 있습니다.</li>
+                <li>이 부분은 Take Hit 애니메이션에서 특정 조건이 되면, Idle 애니메이션으로 전환된다는 표시입니다.</li>
+                <li>애니메이션은 동시에 하나만 진행되고, 위와 같이 하나의 노드 상태에서 다른 상태로 전환됩니다. 이런 형태를 <path>상태 머신</path> 이라고 부릅니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="apply-run-animation-10.png" src="apply-run-animation-10.png"/>
+            <list>
+                <li>인스펙터 뷰에서 해당 애니메이션 전환을 설정할 수 있습니다.</li>
+                <li>Conditions 슬롯에서 전환에 대한 조건을 설정할 수 있습니다.</li>
+                <li>위와 같이 아무런 조건이 설정되어있지 않다면, Take Hit 애니메이션이 완료되면 바로 Idle 애니메이션으로 전환됩니다.</li>
+                <li>Take Hit 애니메이션은 반복 애니메이션이 아니기 때문에 모션을 한 번 진행하고 Idle 애니메이션으로 전환되는 것입니다.</li>
+                <li>Take Hit 는 맞는 애니메이션으로 피격 시, 애니메이션을 한번 진행하고 다시 Idle 상태가 되는 것입니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="스크립트에서 컴포넌트 가져오기">
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                using System.Collections;
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                public class HeroController : MonoBehaviour
+                {
+                    private Animator _anim;
+    
+                    void Start()
+                    {
+                        _anim = GetComponentInChildren<Animator>();
+                    }
+    
+                    void Update()
+                    {
+                        var horizontal = Input.GetAxis("Horizontal");
+                        var vertical = Input.GetAxis("Vertical");
+                        var direction = new Vector3(horizontal, vertical, 0f);
+                        transform.position += direction * Time.deltaTime;
+        
+                        if (horizontal != 0f)
+                        {
+                            transform.localScale = new Vector3(horizontal < 0f ? -1f : 1f, 1f, 1f);
+                        }
+                    }
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>Animator 타입의 프로퍼티 _anim 을 선언합니다.</li>
+                <li>private 으로 선언된 프로퍼티는 통상적으로 프로퍼티의 이름 앞에 언더바(_)를 붙입니다.</li>
+                <li>GetComponent 매서드를 사용하여 코드에서 컴포넌트를 가져올 수 있습니다.</li>
+                <li>자식 오브젝트에 있는 컴포넌트를 가져올 때는 GetComponentInChildren 매서드를 사용합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="apply-run-animation-11.png" src="apply-run-animation-11.png"/>
+            <p>hero 오브젝트를 선택합니다.</p>
+        </step>
+        <step>
+            <img alt="apply-run-animation-12.png" src="apply-run-animation-12.png"/>
+            <list>
+                <li>인스펙터 탭을 마우스 우클릭하면, 하단에 Debug 라는 메뉴가 있습니다.</li>
+                <li>해당 메뉴를 선택합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="apply-run-animation-13.png" src="apply-run-animation-13.png"/>
+            <list>
+                <li>인스펙터 뷰가 디버그 모드로 변경되면서 기존에는 보이지 않던 private 프로퍼티들도 노출됩니다.</li>
+                <li>_anim 프로퍼티는 Start 매서드에서 컴포넌트를 가져오는 로직을 추가하였으니, 실행 시 이 부분에 값이 할당되어야 합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="apply-run-animation-14.png" src="apply-run-animation-14.png"/>
+            <p>실행 시, _anim 프로퍼티가 정상적으로 할당되는 모습을 볼 수 있습니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="애니메이션 적용하기">
+        <step>
+            <img alt="apply-run-animation-15.png" src="apply-run-animation-15.png"/>
+            <p>캐릭터가 이동 시 재생시킬 애니메이션은 <path>Move</path> 노드 입니다.</p>
+        </step>
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                void Update()
+                {
+                    var horizontal = Input.GetAxis("Horizontal");
+                    var vertical = Input.GetAxis("Vertical");
+                    var direction = new Vector3(horizontal, vertical, 0f);
+                    transform.position += direction * Time.deltaTime;
+
+                    if (horizontal != 0f)
+                    {
+                        transform.localScale = new Vector3(horizontal < 0f ? -1f : 1f, 1f, 1f);
+                    }
+
+                    if (horizontal != 0f || vertical != 0f)
+                    {
+                        _anim.Play("Move");
+                    }
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>Move 애니메이션은 유저의 입력이 있을 때, 재생시켜야 합니다.</li>
+                <li>따라서, horizontal 이나 vertical 두 값중 하나라도 0이 아니면 재생시켜야 합니다.</li>
+                <li>if 문에서 <path>||</path> 은 두 조건을 <path>OR</path> 조건으로 연결합니다.</li>
+                <li><path>&amp;&amp;</path> 은 두 조건을 <path>AND</path> 조건으로 연결합니다.</li>
+                <li>Animator 는 애니메이션을 재생시키는 <path>Play</path> 매서드를 제공하고, 매개변수로는 노드의 이름을 받습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="apply-run-animation-16.png" src="apply-run-animation-16.png"/>
+            <list>
+                <li>실행 후 캐릭터를 이동하면, 달리는 모션을 진행하는 것을 볼 수 있습니다.</li>
+                <li>하지만, 다시 멈췄을 때, 서있는 모션으로 돌아오지 않습니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                if (horizontal != 0f || vertical != 0f)
+                {
+                    _anim.Play("Move");
+                }
+                else
+                {
+                    _anim.Play("Idle");
+                }
+            </code-block>
+            <list>
+                <li>else 문을 추가하여, 입력이 없는 상태에서는 Idle 애니메이션을 재생시키는 로직을 추가합니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                _anim.Play(horizontal != 0f || vertical != 0f ? "Move" : "Idle");
+            </code-block>
+            <p>해당 로직은 조건 연산자를 사용하여 위와 같이 간략하게 변경이 가능합니다.</p>
+        </step>
+        <step>
+            <code-block lang="c#">
+                var isMoving = horizontal != 0f || vertical != 0f;
+                _anim.Play(isMoving ? "Move" : "Idle");
+            </code-block>
+            <list>
+                <li>Move 애니메이션은 입력이 있을때만 재생하는 애니메이션입니다.</li>
+                <li>if 문 내부의 조건을 따로 변수로 분리할 수 있습니다.</li>
+                <li>이 변수는 bool 타입이 되며, true(참) 와 false(거짓) 두 가지 값중 하나룰 가지는 데이터 타입입니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                using System.Collections;
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                public class HeroController : MonoBehaviour
+                {
+                    private Animator _anim;
+                    private bool _isMoving;
+
+                    void Start()
+                    {
+                        _anim = GetComponentInChildren<Animator>();
+                    }
+
+                    void Update()
+                    {
+                        var horizontal = Input.GetAxis("Horizontal");
+                        var vertical = Input.GetAxis("Vertical");
+                        var direction = new Vector3(horizontal, vertical, 0f);
+                        transform.position += direction * Time.deltaTime;
+
+                        if (horizontal != 0f)
+                        {
+                            transform.localScale = new Vector3(horizontal < 0f ? -1f : 1f, 1f, 1f);
+                        }
+
+                        var isMoving = horizontal != 0f || vertical != 0f;
+                        if (_isMoving != isMoving)
+                        {
+                            _isMoving = isMoving;
+                            _anim.Play(_isMoving ? "Move" : "Idle");
+                        }
+                    }
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>Move 와 Idle 애니메이션은 반복 애니메이션으로 isMoving 값의 상태가 바뀌는 순간에만 애니메이션을 재생시켜야 합니다.</li>
+                <li>이런 경우엔 해당 변수의 프로퍼티를 하나 추가하여 이전 값을 저장하고, 이전 값과 비교하여 변경이 있을 경우에만 로직이 처리되도록 변경할 수 있습니다.</li>
+            </list>
+        </step>
+    </procedure>
 </topic>
