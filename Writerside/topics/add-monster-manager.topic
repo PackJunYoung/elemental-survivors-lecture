@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="몬스터 매니저 추가하기" id="add-monster-manager">
+
+    <procedure title="스크립트 추가하기">
+        <step>
+            <img alt="add-monster-manager-1.png" src="add-monster-manager-1.png"/>
+            <p><path>Scripts | Manager</path> 경로에 <path>MonsterManager</path> 스크립트를 추가합니다.</p>
+        </step>
+        <step>
+            <img alt="add-monster-manager-2.png" src="add-monster-manager-2.png"/>
+            <p><path>MonsterManager</path> 이름의 빈 오브젝트를 추가하고, MonsterManager 스크립트도 컴포넌트로 추가합니다.</p>
+        </step>
+        <step>
+            <code-block lang="c#">
+                using UnityEngine;
+
+                public class MonsterManager : MonoBehaviour
+                {
+                    public static MonsterManager instance;
+
+                    private void Start()
+                    {
+                        instance = this;
+                    }
+                }
+
+            </code-block>
+            <list>
+                <li>MonsterManager 코드를 수정하여, 싱글톤으로 변경합니다.</li>
+                <li>이제 MapManager, MonsterManager 두 가지 매니저가 존재하고, 개발이 진행될수록 다양한 매니저가 더 추가될 예정입니다.</li>
+                <li>현재는 Start 매서드에서 초기화를 진행하지만, 이러면 매니저 간의 초기화 순서를 보장할 수 없습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-monster-manager-3.png" src="add-monster-manager-3.png"/>
+            <list>
+                <li><path>Scripts | Manager</path> 경로에 <path>MainGameManager</path> 스크립트를 추가합니다.</li>
+                <li>이곳에서 다양한 매니저 클래스들의 초기화를 직접 호출해주고, 순서를 보장해 줍니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-monster-manager-4.png" src="add-monster-manager-4.png"/>
+            <p><path>MainGameManager</path> 이름의 빈 오브젝트를 추가하고, MainGameManager 스크립트도 컴포넌트로 추가합니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="매니저 초기화 로직 통합하기">
+        <step>
+            <code-block lang="c#">
+                using UnityEngine;
+
+                public class MainGameManager : MonoBehaviour
+                {
+                    public MapManager mapManager;
+                    public MonsterManager monsterManager;
+
+                    public static MainGameManager instance;
+
+                    private void Start()
+                    {
+                        instance = this;
+                    }
+                }
+
+            </code-block>
+            <list>
+                <li>MainGameManager 를 싱글톤으로 변경합니다.</li>
+                <li>mapManager, monsterManager 프로퍼티를 추가합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-monster-manager-5.png" src="add-monster-manager-5.png"/>
+            <p>MainGameManager 오브젝트에 각 매니저를 연결합니다.</p>
+        </step>
+        <step>
+            <code-block lang="c#">
+                using UnityEngine;
+
+                public class MapManager : MonoBehaviour
+                {
+                    public float mapMinX;
+                    public float mapMaxX;
+                    public float mapMinY;
+                    public float mapMaxY;
+
+                    public static MapManager instance;
+
+                    public void Init()
+                    {
+                        instance = this;
+                    }
+
+                    public Vector3 GetPositionInsideMap(Vector3 position)
+                    {
+                        position.x = Mathf.Clamp(position.x, mapMinX, mapMaxX);
+                        position.y = Mathf.Clamp(position.y, mapMinY, mapMaxY);
+                        return position;
+                    }
+                }
+
+            </code-block>
+            <code-block lang="c#">
+                using UnityEngine;
+
+                public class MonsterManager : MonoBehaviour
+                {
+                    public static MonsterManager instance;
+
+                    public void Init()
+                    {
+                        instance = this;
+                    }
+                }
+
+            </code-block>
+            <code-block lang="c#">
+                using UnityEngine;
+
+                public class MainGameManager : MonoBehaviour
+                {
+                    public MapManager mapManager;
+                    public MonsterManager monsterManager;
+
+                    public static MainGameManager instance;
+
+                    private void Start()
+                    {
+                        instance = this;
+
+                        mapManager.Init();
+                        monsterManager.Init();
+                    }
+                }
+
+            </code-block>
+            <list>
+                <li>기존에 각 매니저 클래스에서 Start 매서드 부분을 public Init 으로 변경합니다.</li>
+                <li>MainGameManager 에서 각 매니저의 초기화 함수를 호출해 줍니다.</li>
+                <li>여기서 Init 을 호출하는 순서에 따라, 각 매니저의 초기화 순서를 결정할 수 있습니다.</li>
+            </list>
+        </step>
+    </procedure>
+</topic>

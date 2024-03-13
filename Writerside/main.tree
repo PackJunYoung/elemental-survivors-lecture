@@ -53,4 +53,13 @@
             <toc-element topic="separate-controller.topic"/>
         </toc-element>
     </toc-element>
+    <toc-element topic="part-2.topic">
+        <toc-element topic="part2-ch01.topic">
+            <toc-element topic="add-map-manager.topic"/>
+        </toc-element>
+        <toc-element topic="part2-ch02.topic">
+            <toc-element topic="add-monster-manager.topic"/>
+            <toc-element topic="add-monster-spawn-point.topic"/>
+        </toc-element>
+    </toc-element>
 </instance-profile>

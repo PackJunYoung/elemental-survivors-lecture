@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="몬스터 스폰 포인트 추가하기" id="add-monster-spawn-point">
+
+    <procedure title="스크립트 추가하기">
+        <step>
+            <img alt="add-monster-spawn-point-1.png" src="add-monster-spawn-point-1.png"/>
+            <list>
+                <li><path>Scripts | MonsterSpawn</path> 폴더를 추가합니다.</li>
+                <li>추가한 폴더에 <path>MonsterSpawnPoint</path> 스크립트를 추가합니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                using UnityEngine;
+
+                public class MonsterSpawnPoint : MonoBehaviour
+                {
+                    public GameObject monsterPrefab;
+                    public float interval;
+                }
+
+            </code-block>
+            <list>
+                <li>monsterPrefab, interval 프로퍼티를 추가합니다.</li>
+                <li>monsterPrefab 은 몬스터 프리팹 리소스를 연결하고, 해당 몬스터를 스폰합니다.</li>
+                <li>interval 은 게임이 시작되면 지정된 시간마다 연결된 몬스터를 생성합니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="스폰 포인트 설정하기">
+        <step>
+            <img alt="add-monster-spawn-point-2.png" src="add-monster-spawn-point-2.png"/>
+            <list>
+                <li>SpawnPoint_1 이름의 빈 오브젝트를 추가합니다.</li>
+                <li>해당 오브젝트에 MonsterSpawnPoint 스크립트를 추가합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-monster-spawn-point-3.png" src="add-monster-spawn-point-3.png"/>
+            <list>
+                <li>추가했던 오브젝트를 복제해서 3개를 더 추가합니다.</li>
+                <li>각 스폰 포인트의 위치를 다양하게 변경해줍니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-monster-spawn-point-4.png" src="add-monster-spawn-point-4.png"/>
+            <list>
+                <li>몬스터의 프리팹은 <path>Arts | Character | Prefabs</path> 에 있습니다.</li>
+                <li>0 ~ 3 번은 일반 몬스터이고, 4 ~ 7 번은 보스 몬스터 입니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-monster-spawn-point-5.png" src="add-monster-spawn-point-5.png"/>
+            <img alt="add-monster-spawn-point-6.png" src="add-monster-spawn-point-6.png"/>
+            <img alt="add-monster-spawn-point-7.png" src="add-monster-spawn-point-7.png"/>
+            <img alt="add-monster-spawn-point-8.png" src="add-monster-spawn-point-8.png"/>
+            <p>각 스폰 포인트에 몬스터 프리팹과 스폰 간격을 다양하게 입력합니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="몬스터 스폰하기">
+        <step>
+            <code-block lang="c#">
+                using UnityEngine;
+
+                public class MonsterSpawnPoint : MonoBehaviour
+                {
+                    public GameObject monsterPrefab;
+                    public float interval;
+
+                    private float _timer;
+
+                    private void Update()
+                    {
+                        _timer += Time.deltaTime;
+                        if (_timer > interval)
+                        {
+                            _timer = 0f;
+                            SpawnMonster();
+                        }
+                    }
+
+                    private void SpawnMonster()
+                    {
+                        Debug.Log("monster spawn!!!");
+                    }
+                }
+
+            </code-block>
+            <list>
+                <li>_timer 프로퍼티를 추가하고, Update 매서드에서 deltaTime 을 계속 합산 해줍니다. _timer 에는 흘러간 시간 값이 됩니다.</li>
+                <li>_timer 가 interval 값을 초과하면 if 문 안으로 들어옵니다. 이 때, 몬스터를 스폰합니다.</li>
+                <li>몬스터를 스폰할 때 _timer 의 값을 0으로 만들어서, 다시 interval 만큼 시간이 지나야 if 문 안으로 들어오도록 합니다.</li>
+                <li>결과적으로 interval 마다 몬스터를 스폰하게 됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-monster-spawn-point-9.png" src="add-monster-spawn-point-9.png"/>
+            <p>실행 시, 시간이 지남에 따라 몬스터 스폰 로그가 찍히는 것을 확인할 수 있습니다.</p>
+        </step>
+        <step>
+            <code-block lang="c#">
+                private void SpawnMonster()
+                {
+                    var monster = Instantiate(monsterPrefab);
+                }
+            </code-block>
+            <list>
+                <li>monsterPrefab 은 프로젝트 뷰의 프리팹 리소스입니다.</li>
+                <li>해당 프리팹을 바로 사용하는 것이 아니고, 이 프리팹을 기준으로 게임 오브젝트를 생성해야합니다.</li>
+                <li><path>Instantiate</path> 매서드를 사용하여 프리팹을 게임 오브젝트로 생성할 수 있습니다.</li>
+                <li>생성한 게임 오브젝트는 하이어라키 뷰에 추가됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-monster-spawn-point-10.png" src="add-monster-spawn-point-10.png"/>
+            <p>실행 후 시간이 지나면, 해당 프리팹이 게임 오브젝트로 생성되는 모습을 볼 수 있습니다.</p>
+        </step>
+        <step>
+            <img alt="add-monster-spawn-point-11.png" src="add-monster-spawn-point-11.png"/>
+            <list>
+                <li>몬스터 별로 특정 위치에 계속 생성되는데, 이 위치는 프리팹에 기본으로 설정되어 있는 위치 입니다.</li>
+                <li>몬스터가 스폰되는 위치를 스폰 포인트의 위치로 바꿔주도록 하겠습니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                private void SpawnMonster()
+                {
+                    var monster = Instantiate(monsterPrefab);
+                    monster.transform.position = transform.position;
+                }
+            </code-block>
+            <list>
+                <li>생성한 게임 오브젝트(monster)의 위치(transform.position)를 스크립트가 붙어있는 오브젝트(스폰 포인트)의 위치로 변경하는 로직을 추가합니다.</li>
+                <li>실행 시, 이제는 스폰 포인트의 위치에 해당 몬스터들이 생성되는 것을 볼 수 있습니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="몬스터 아이디를 기반으로 생성하기">
+        <step>
+            <img alt="add-monster-spawn-point-12.png" src="add-monster-spawn-point-12.png"/>
+            <list>
+                <li>현재는 스폰 포인트에서 실제 프리팹을 연결해서, 이것을 기반으로 몬스터를 생성합니다.</li>
+                <li>하지만, 이렇게 프리팹 자체를 연결해두는 것보다는 몬스터마다 id를 부여하고, 해당 id를 입력하는 형태가 더 편리합니다.</li>
+                <li>id는 문자열이기 때문에 스폰 포인트에서 몬스터 설정을 입력하고 변경할 때, 훨씬 쉽게 작업이 가능합니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                using UnityEngine;
+
+                public class MonsterSpawnPoint : MonoBehaviour
+                {
+                    public string monsterId;
+                    public GameObject monsterPrefab;
+                    public float interval;
+
+                    private float _timer;
+
+                    ...
+                }
+
+            </code-block>
+            <p>몬스터 id에 사용할 monsterId 프로퍼티를 추가합니다.</p>
+        </step>
+        <step>
+            <img alt="add-monster-spawn-point-13.png" src="add-monster-spawn-point-13.png"/>
+            <list>
+                <li>각 스폰 포인트에 몬스터 id 값을 입력합니다.</li>
+                <li>각 몬스터 프리팹 이름에 뒷 부분 숫자를 id로 사용하도록 하겠습니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                using UnityEngine;
+
+                public class MonsterSpawnPoint : MonoBehaviour
+                {
+                    public string monsterId;
+                    public float interval;
+
+                    private float _timer;
+
+                    private void Update()
+                    {
+                        _timer += Time.deltaTime;
+                        if (_timer > interval)
+                        {
+                            _timer = 0f;
+                            SpawnMonster();
+                        }
+                    }
+
+                    private void SpawnMonster()
+                    {
+                        var monster = Instantiate(monsterPrefab);
+                        monster.transform.position = transform.position;
+                    }
+                }
+
+            </code-block>
+            <list>
+                <li>이제 monsterPrefab 프로퍼티는 제거합니다.</li>
+                <li>하지만, Instantiate 매서드의 매개변수는 프리팹 오브젝트이기 때문에, 실제로 프리팹 오브젝트를 불러오는 과정이 필요합니다.</li>
+                <li>id만 가지고 특정 프리팹 리소스를 찾아오는 방법이 필요합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-monster-spawn-point-14.png" src="add-monster-spawn-point-14.png"/>
+            <list>
+                <li>Assets 하위에 <path>Resources</path> 이름의 폴더를 추가합니다.</li>
+                <li>Resources 폴더는 특수한 폴더로 이 폴더 내부에 있는 리소스는 스크립트에서 특정 코드를 통해 찾아올 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-monster-spawn-point-15.png" src="add-monster-spawn-point-15.png"/>
+            <list>
+                <li>Resources 하위에 Monsters 이름의 폴더를 추가하고, <path>Arts | Character | Prefabs</path> 경로에 있었던 몬스터 프리팹들을 옮겨 놓습니다.</li>
+                <li>이제 이 리소스들은 스크립트에서 동적으로 불러올 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                private void SpawnMonster()
+                {
+                    var monsterPrefab = Resources.Load<GameObject>($"Monsters/monster_{monsterId}");
+                    var monster = Instantiate(monsterPrefab);
+                    monster.transform.position = transform.position;
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>SpawnMonster 매서드에서 몬스터 프리팹을 불러오는 로직을 추가합니다.</li>
+                <li>Resources.Load 매서드를 사용하면, 매개변수로 받은 Resources 아래의 경로에 리소스에 접근할 수 있습니다.</li>
+                <li>프리팹 오브젝트 리소스 이기 때문에 Load 이후에 GameObject 를 명시해줍니다.</li>
+                <li>프리팹의 이름이 monster_ 이후에 몬스터 id가 붙는 형태이기 때문에 monsterId 를 섞어서 경로를 지정해줍니다.</li>
+                <li>실행 시, 이전과 동일한 결과로 리소스를 동적으로 불러와서 몬스터를 생성하는 것을 볼 수 있습니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="몬스터 모아서 관리하기">
+        <step>
+            <img alt="add-monster-spawn-point-16.png" src="add-monster-spawn-point-16.png"/>
+            <list>
+                <li>현재는 몬스터를 스폰 포인트에서 각각 생성되며, 부모 오브젝트 없이 최상위로 생성됩니다.</li>
+                <li>하지만, 특정 오브젝트를 생성해주는 로직은 한곳에서 모아서 관리하는 것이 유지보수를 위해 더 좋습니다.</li>
+                <li>모든 몬스터의 생성은 스폰 포인트에서 시작되지만, 생성과 이후 관리는 MonsterManager 에서 모아서 관리하도록 변경하겠습니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                using UnityEngine;
+
+                public class MonsterManager : MonoBehaviour
+                {
+                    public static MonsterManager instance;
+
+                    public void Init()
+                    {
+                        instance = this;
+                    }
+
+                    public GameObject GenerateMonster(string monsterId)
+                    {
+                        var monsterPrefab = Resources.Load<GameObject>($"Monsters/monster_{monsterId}");
+                        return Instantiate(monsterPrefab);
+                    }
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>MonsterSpawnPoint 스크립트에 있던 몬스터 생성 로직을 MonsterManager 로 옮깁니다.</li>
+                <li>스폰 포인트가 위치를 바꿔줘야하기 때문에, GameObject 를 반환해주도록 합니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                public GameObject GenerateMonster(string monsterId)
+                {
+                    var monsterPrefab = Resources.Load<GameObject>($"Monsters/monster_{monsterId}");
+                    var monster = Instantiate(monsterPrefab, transform);
+                    var monsterCont = monster.GetComponent<MonsterController>();
+                    monsterCont.Init();
+                    monsterControllers.Add(monsterCont);
+
+                    return monster;
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>Instantiate 매서드의 두번째 매개변수는 부모 오브젝트로 지정할 트랜스폼 입니다.</li>
+                <li>매개변수를 지정하면 해당 오브젝트의 자식 오브젝트로 오브젝트가 생성됩니다.</li>
+                <li>매개변수를 추가하지 않을 경우, 이전처럼 최상위 오브젝트로 생성됩니다.</li>
+                <li>transform 을 지정하여, 현재 오브젝트의 MonsterManager 하위에 몬스터 오브젝트들이 추가되도록 수정합니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                private void SpawnMonster()
+                {
+                    var monster = MonsterManager.instance.GenerateMonster(monsterId);
+                    monster.transform.position = transform.position;
+                }
+            </code-block>
+            <list>
+                <li>MonsterSpawnPoint 의 몬스터 생성 로직을 MonsterManager 를 사용하도록 수정합니다.</li>
+                <li>반환된 게임 오브젝트를 사용해서 위치를 바꿔줍니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="리스트 알아보기">
+        <step>
+            <img alt="add-monster-spawn-point-17.png" src="add-monster-spawn-point-17.png"/>
+            <p><path>Scripts | Monster</path> 폴더를 추가하고, <path>MonsterController</path> 이름의 스크립트를 추가합니다.</p>
+        </step>
+        <step>
+            <img alt="add-monster-spawn-point-18.png" src="add-monster-spawn-point-18.png"/>
+            <list>
+                <li>모든 몬스터 프리팹 리소스에 MonsterController 스크립트 컴포넌트를 추가해줍니다.</li>
+                <li>HeroController 처럼 각 몬스터를 제어할 기본 클래스로 사용할 예정입니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                using UnityEngine;
+
+                public class MonsterController : MonoBehaviour
+                {
+                    public void Init()
+                    {
+
+                    }
+                }
+
+            </code-block>
+            <p>몬스터를 초기화할 때 사용할 Init 매서드를 추가합니다.</p>
+        </step>
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                public GameObject GenerateMonster(string monsterId)
+                {
+                    var monsterPrefab = Resources.Load<GameObject>($"Monsters/monster_{monsterId}");
+                    var monster = Instantiate(monsterPrefab, transform);
+                    var monsterCont = monster.GetComponent<MonsterController>();
+                    monsterCont.Init();
+
+                    return monster;
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>Instantiate 로 생성한 몬스터 오브젝트에서 MonsterController 스크립트를 가져오는 부분을 추가합니다.</li>
+                <li>프리팹에 이미 스크립트가 추가되어 있어서, GetComponent 매서드를 사용하여 스크립트 컴포넌트를 가져올 수 있습니다.</li>
+                <li>MonsterController 스크립트를 가져온 이후에는 Init 매서드를 호출하여 초기화를 진행해 줍니다.</li>
+            </list>
+        </step>
+        <step>
+            <list>
+                <li>현재는 몬스터를 생성하고, 프로퍼티로 저장하는 형태가 아니기 때문에 생성 이후에 몬스터 오브젝트에 다시 접근할 방법이 없습니다.</li>
+                <li>하지만, 나중에 전체 몬스터에 적용되는 효과와 같은 다양한 기능을 제공하기 위해서는 몬스터 오브젝트를 프로퍼티로 저장하는 형태가 되어야 합니다.</li>
+                <li>몬스터는 계속해서 늘어나고, 줄어드는 구조이며, 이런 속성의 데이터를 표현하기 위해 <path>리스트</path> 라는 데이터 타입이 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                public class MonsterManager : MonoBehaviour
+                {
+                    public static MonsterManager instance;
+
+                    private List<MonsterController> monsterControllers = new List<MonsterController>();
+
+                    public void Init()
+                    {
+                        instance = this;
+                    }
+
+                    public GameObject GenerateMonster(string monsterId)
+                    {
+                        var monsterPrefab = Resources.Load<GameObject>($"Monsters/monster_{monsterId}");
+                        var monster = Instantiate(monsterPrefab, transform);
+                        var monsterCont = monster.GetComponent<MonsterController>();
+                        monsterCont.Init();
+
+                        return monster;
+                    }
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>List 프로퍼티를 추가합니다.</li>
+                <li>여러개의 MonsterController 가 담길 수 있는 데이터 타입입니다.</li>
+                <li>List 도 참조 타입이기 때문에 new 를 사용하여 초기값을 지정해 줍니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                public class MonsterManager : MonoBehaviour
+                {
+                    public static MonsterManager instance;
+
+                    private List<MonsterController> monsterControllers = new List<MonsterController>();
+
+                    public void Init()
+                    {
+                        instance = this;
+                    }
+
+                    public GameObject GenerateMonster(string monsterId)
+                    {
+                        var monsterPrefab = Resources.Load<GameObject>($"Monsters/monster_{monsterId}");
+                        var monster = Instantiate(monsterPrefab, transform);
+                        var monsterCont = monster.GetComponent<MonsterController>();
+                        monsterCont.Init();
+                        monsterControllers.Add(monsterCont);
+
+                        return monster;
+                    }
+
+                    public void RemoveMonster(MonsterController monsterCont)
+                    {
+                        monsterControllers.Remove(monsterCont);
+                    }
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>Add 매서드를 사용하면 리스트에 항목을 추가할 수 있습니다.</li>
+                <li>MonsterController 의 List 이기 때문에, 추가할 수 있는 항목은 반드시 MonsterController 타입이어야 합니다.</li>
+                <li>리스트에서 삭제하는 부분을 추가하기 위해, 몬스터를 제거하는 매서드를 미리 작성하였습니다.</li>
+                <li>Remove 매서드를 사용하면 리스트에서 항목을 제거할 수 있습니다.</li>
+                <li>매개변수로 받은 항목과 동일한 항목을 리스트에서 가지고 있을 경우, 제거됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-monster-spawn-point-19.png" src="add-monster-spawn-point-19.png"/>
+            <list>
+                <li>MonsterManager 를 Debug 타입으로 인스펙터를 바꾸면, 리스트 프로퍼티의 상태를 확인할 수 있습니다.</li>
+                <li>생성되는 몬스터가 바로바로 이곳에 더해집니다.</li>
+            </list>
+        </step>
+    </procedure>
+</topic>

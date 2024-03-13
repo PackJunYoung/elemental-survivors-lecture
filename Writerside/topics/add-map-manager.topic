@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="맵 매니저 추가하기" id="add-map-manager">
+
+    <list>
+        <li>이제 캐릭터를 키보드를 통해 움직일 수 있습니다.</li>
+        <li>하지만, 캐릭터가 맵 영역을 넘어가서도 계속 이동합니다.</li>
+        <li>캐릭터가 맵 내부만 이동이 제한되도록 수정을 진행하겠습니다.</li>
+    </list>
+
+    <procedure title="스크립트 추가">
+        <step>
+            <img alt="add-map-manager-1.png" src="add-map-manager-1.png"/>
+            <list>
+                <li><path>Assets | Scripts</path> 경로에 <path>Manager</path> 폴더를 추가합니다.</li>
+                <li>추가한 Manager 폴더에 <path>MapManager</path> 스크립트를 추가합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-map-manager-2.png" src="add-map-manager-2.png"/>
+            <list>
+                <li><path>MapManager</path> 이름의 빈 오브젝트를 추가합니다.</li>
+                <li>추가한 MapManager 오브젝트에 MapManager 스크립트 컴포넌트를 추가합니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                using System.Collections;
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                public class MapManager : MonoBehaviour
+                {
+                    public float mapMinX;
+                    public float mapMaxX;
+                    public float mapMinY;
+                    public float mapMaxY;
+                }
+
+            </code-block>
+            <list>
+                <li>캐릭터의 이동을 제한할 임계값을 설정할 프로퍼티를 추가합니다.</li>
+                <li>상하좌우 맵 영역에 대한 제한값입니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-map-manager-3.png" src="add-map-manager-3.png"/>
+            <list>
+                <li>실제로 hero 오브젝트를 움직여서 어디쯤에서 이동을 제한하면 좋을지 확인해봅니다.</li>
+                <li>상하좌우 적당한 값을 결정합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-map-manager-4.png" src="add-map-manager-4.png"/>
+            <list>
+                <li>측정한 값을 MinX, MaxX, MinY, MaxY 프로퍼티에 입력합니다.</li>
+                <li>hero 오브젝트의 위치는 다시 원래대로 옮겨놓습니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                using System.Collections;
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                public class MapManager : MonoBehaviour
+                {
+                    public float mapMinX;
+                    public float mapMaxX;
+                    public float mapMinY;
+                    public float mapMaxY;
+
+                    public Vector3 GetPositionInsideMap(Vector3 position)
+                    {
+                        position.x = Mathf.Clamp(position.x, mapMinX, mapMaxX);
+                        position.y = Mathf.Clamp(position.y, mapMinY, mapMaxY);
+                        return position;
+                    }
+                }
+
+            </code-block>
+            <list>
+                <li>position 을 매개변수로 받아 맵 내부의 영역으로 제한한 position 으로 다시 반환해주는 매서드 <path>GetPositionInsideMap</path> 을 추가합니다.</li>
+                <li><path>Mathf.Clamp</path> 매서드는 첫 번째 매개변수의 값을 두 번째와 세 번째 매개변수의 사이값으로 변경해줍니다.</li>
+                <li>따라서, mapMinX 보다 작은 값은 mapMinX 값이 되고, mapMaxX 보다 큰 값은 mapMaxX 값이 됩니다.</li>
+                <li>결국 지정한 경계 영역 내부의 position 으로 변경하여 반환합니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="static 알아보기">
+        <step>
+            <code-block lang="c#">
+                using System.Collections;
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                class Fruit
+                {
+                    public string name;
+                    public int count;
+
+                    public Fruit(string name, int count)
+                    {
+                        this.name = name;
+                        this.count = count;
+                    }
+                }
+
+                public class MapManager : MonoBehaviour
+                {
+                    public float mapMinX;
+                    public float mapMaxX;
+                    public float mapMinY;
+                    public float mapMaxY;
+
+                    private void Start()
+                    {
+                        var apple = new Fruit("apple", 3);
+                        var banana = new Fruit("banana", 2);
+                        Debug.Log($"apple: name={apple.name}, count={apple.count}");
+                        Debug.Log($"banana: name={banana.name}, count={banana.count}");
+                    }
+
+                    public Vector3 GetPositionInsideMap(Vector3 position)
+                    {
+                        position.x = Mathf.Clamp(position.x, mapMinX, mapMaxX);
+                        position.y = Mathf.Clamp(position.y, mapMinY, mapMaxY);
+                        return position;
+                    }
+                }
+
+            </code-block>
+            <list>
+                <li><path>static</path> 을 알아보기 위해, 지난번에 작성했었던 Fruit 클래스를 다시 작성하였습니다.</li>
+                <li>Fruit 클래스는 name, count 프로퍼티를 가지고 있고, 매개변수를 받아 프로퍼티 값을 바로 설정할 수 있는 <path>생성자</path> 도 있습니다.</li>
+                <li>Start 매서드에서 apple 과 banana 라는 이름의 <path>인스턴스</path> 를 생성하였습니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                class Fruit
+                {
+                    public string name;
+                    public int count;
+
+                    public static string shopName;
+
+                    public Fruit(string name, int count)
+                    {
+                        this.name = name;
+                        this.count = count;
+                    }
+                }
+            </code-block>
+            <p>이제 Fruit 클래스에 static 이 붙은 string 타입의 shopName 프로퍼티를 추가합니다.</p>
+        </step>
+        <step>
+            <img alt="add-map-manager-5.png" src="add-map-manager-5.png"/>
+            <list>
+                <li>하지만, 추가한 shopName 프로퍼티에 접근하려고 하면 에러가 발생합니다.</li>
+                <li>apple 과 banana 모두 값을 할당하지도 읽어오지도 못하는 것을 볼 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-map-manager-6.png" src="add-map-manager-6.png"/>
+            <list>
+                <li>에러가 발생한 이유는 static 프로퍼티는 <path>인스턴스</path> 에 해당되는 것이 아니라 <path>클래스</path> 에 해당되는 프로퍼티가 되기 때문입니다.</li>
+                <li>따라서, apple 이나 banana 인스턴스로 접근해야 되었던 일반 변수와 달리 클래스인 Fruit 와 함께 접근해야 값을 설정하고 읽어올 수 있습니다.</li>
+                <li>클래스는 특정한 타입에 대한 정의이고 인스턴스를 그 타입을 실체화한 것입니다. 그리고 static 변수는 해당 타입에 고유한 값을 나타냅니다.</li>
+                <li>결국 static 은 모든 인스턴스에서 동일한 값이라고 생각해도 됩니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="싱글톤 알아보기">
+        <step>
+            <list>
+                <li>MapManager 에 position 을 맵 영역 이내로 제한하여 반환해주는 매서드를 추가했지만, 아직 사용하고 있지 않습니다.</li>
+                <li>이 매서드를 실제로 호출해야하는 것은 MoveController 인데 MapManager 인스턴스에 접근하기가 쉽지 않습니다.</li>
+                <li>MapManager 는 게임에 하나만 존재해야되는 매니저이기 때문에 이런 오브젝트는 싱글톤(Singleton) 으로 변경하면, 다른 클래스에서 호출하기 편리합니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                using System.Collections;
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                public class MapManager : MonoBehaviour
+                {
+                    public float mapMinX;
+                    public float mapMaxX;
+                    public float mapMinY;
+                    public float mapMaxY;
+    
+                    public static MapManager instance;
+    
+                    private void Start()
+                    {
+                        instance = this;
+                    }
+    
+                    public Vector3 GetPositionInsideMap(Vector3 position)
+                    {
+                        position.x = Mathf.Clamp(position.x, mapMinX, mapMaxX);
+                        position.y = Mathf.Clamp(position.y, mapMinY, mapMaxY);
+                        return position;
+                    }
+                }
+
+            </code-block>
+            <list>
+                <li>MapManager 타입의 static 프로퍼티 instance 를 추가합니다.</li>
+                <li>Start 매서드에서 instance 에 자기 자신을 뜻하는 this 를 할당합니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                using System.Collections;
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                public class MoveController : MonoBehaviour
+                {
+                    private float _speed;
+
+                    public void OnStart(float speed)
+                    {
+                        _speed = speed;
+                    }
+
+                    public void OnUpdate(float horizontal, float vertical)
+                    {
+                        var direction = new Vector3(horizontal, vertical, 0f);
+                        var position = transform.position + direction * Time.deltaTime * _speed;
+                        transform.position = MapManager.instance.GetPositionInsideMap(position);
+
+                        if (horizontal != 0f)
+                        {
+                            transform.localScale = new Vector3(horizontal < 0f ? -1f : 1f, 1f, 1f);
+                        }
+                    }
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>변경된 위치값을 position 변수에 할당하는 로직으로 변경합니다.</li>
+                <li>position 은 MapManager 에 GetPositionInsideMap 매서드로 맵 영역 내부의 위치로 변환되고, 해당 값이 transform.position 에
+                    할당됩니다.
+                </li>
+                <li>MapManager 가 싱글톤이기 때문에 손쉽게 필요한 매서드를 호출할 수 있습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="add-map-manager-7.png" src="add-map-manager-7.png"/>
+            <p>실행 후 맵 영역 밖으로 이동하려고 해도, 넘어가지지 않고 맵 내부로 제한되는 것을 볼 수 있습니다.</p>
+        </step>
+    </procedure>
+</topic>
