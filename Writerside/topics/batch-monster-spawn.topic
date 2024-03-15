@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="몬스터 스폰 포인트 배치하기" id="batch-monster-spawn">
+
+    <procedure title="스폰 포인트 프리팹 추가하기">
+        <step>
+            <img alt="batch-monster-spawn-1.png" src="batch-monster-spawn-1.png"/>
+            <list>
+                <li>현재는 몬스터 스폰 포인트가 씬에 추가되어 있습니다.</li>
+                <li>하지만, 이렇게되면 항상 같은 위치에서 스폰 포인트가 위치하게 되며 스폰 포인트를 늘리는 과정이 번거로워 집니다.</li>
+                <li>따라서, 스폰 포인트에서 동적으로 몬스터를 생성하듯 스폰 포인트 자체도 동적으로 생성하는 방식으로 변경하겠습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="batch-monster-spawn-2.png" src="batch-monster-spawn-2.png"/>
+            <list>
+                <li><path>Resources | SpawnPoints</path> 폴더를 추가합니다.</li>
+                <li>씬에서 추가했던 스폰 포인트 두 개를 드래그하여 프리팹으로 추가합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="batch-monster-spawn-3.png" src="batch-monster-spawn-3.png"/>
+            <p>1번 스폰 포인트 프리팹은 일반 몬스터 스폰 포인트라는 생각으로 내용을 입력합니다.</p>
+        </step>
+        <step>
+            <img alt="batch-monster-spawn-4.png" src="batch-monster-spawn-4.png"/>
+            <p>2번 스폰 포인트 프리팹은 보스 몬스터 스폰 포인트라는 생각으로 내용을 입력합니다.</p>
+        </step>
+    </procedure>
+
+    <procedure title="스폰 포인트 정보 클래스 추가하기">
+        <step>
+            <img alt="batch-monster-spawn-5.png" src="batch-monster-spawn-5.png"/>
+            <p><path>Scripts | MonsterSpawn</path> 경로에 <path>MonsterSpawnPointInfo</path> 스크립트를 추가합니다.</p>
+        </step>
+        <step>
+            <code-block lang="c#">
+                using System;
+
+                [Serializable]
+                public class MonsterSpawnPointInfo
+                {
+                    public string monsterSpawnPointId;
+                    public int count;
+                }
+
+            </code-block>
+            <list>
+                <li>스폰 포인트 id 와 count 프로퍼티를 추가합니다.</li>
+                <li>데이터를 표현하는 클래스 이므로, Serializable 을 붙여주고, MonoBehaviour 는 제거해야 합니다.</li>
+                <li>지정된 스폰 포인트를 지정된 개수만큼 생성하는데 사용할 예정입니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                public class MonsterManager : MonoBehaviour
+                {
+                    public static MonsterManager instance;
+
+                    public List<MonsterSpawnPointInfo> monsterSpawnPointInfos;
+
+                    private List<MonsterController> monsterControllers = new List<MonsterController>();
+
+                    public void Init()
+                    {
+                        instance = this;
+                    }
+
+                    ...
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>MonsterManager 클래스에 monsterSpawnPointInfos 프로퍼티를 추가합니다.</li>
+                <li>리스트로 시작 시, 지정된 스폰 포인트를 생성하는데 사용할 예정입니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="batch-monster-spawn-6.png" src="batch-monster-spawn-6.png"/>
+            <list>
+                <li>MonsterManager 인스펙터에서 monsterSpawnPointInfos 프로퍼티 값을 입력합니다.</li>
+                <li>일반 몬스터 스폰 포인트인 0번은 10개를 생성하고, 보스 몬스터 스폰 포인트인 1번은 1개만 생성하도록 설정하였습니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="batch-monster-spawn-7.png" src="batch-monster-spawn-7.png"/>
+            <list>
+                <li>이제 동적으로 몬스터 스폰 포인트를 생성할 예정이니, 기존에 씬에서 설정해뒀던 스폰 포인트 오브젝트들은 전부 제거합니다.</li>
+            </list>
+        </step>
+    </procedure>
+
+    <procedure title="몬스터 스폰 포인트 생성하기">
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                using System.Collections.Generic;
+                using UnityEngine;
+
+                public class MonsterManager : MonoBehaviour
+                {
+                    public static MonsterManager instance;
+
+                    public List<MonsterSpawnPointInfo> monsterSpawnPointInfos;
+
+                    private List<MonsterController> monsterControllers = new List<MonsterController>();
+
+                    public void Init()
+                    {
+                        instance = this;
+                        GenerateSpawnPoints();
+                    }
+
+                    private void GenerateSpawnPoints()
+                    {
+
+                    }
+
+                    public GameObject GenerateMonster(string monsterId)
+                    {
+                        var monsterPrefab = Resources.Load<GameObject>($"Monsters/monster_{monsterId}");
+                        var monster = Instantiate(monsterPrefab, transform);
+                        var monsterCont = monster.GetComponent<MonsterController>();
+                        monsterCont.Init();
+                        monsterControllers.Add(monsterCont);
+
+                        return monster;
+                    }
+
+                    public void RemoveMonster(MonsterController monsterCont)
+                    {
+                        monsterControllers.Remove(monsterCont);
+                        Destroy(monsterCont.gameObject);
+                    }
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>MonsterManager 클래스에 GenerateSpawnPoints 매서드를 추가합니다.</li>
+                <li>초기화 로직인 Init 시점에 해당 매서드를 호출합니다.</li>
+                <li>이 매서드에서 몬스터 스폰 포인트를 생성할 예정입니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                private void GenerateSpawnPoints()
+                {
+                    foreach (var monsterSpawnPointInfo in monsterSpawnPointInfos)
+                    {
+                        for (var i = 0; i < monsterSpawnPointInfo.count; i++)
+                        {
+                            // 몬스터 스폰 포인트 생성
+                        }
+                    }
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>monsterSpawnPointInfos 프로퍼티는 리스트 타입으로 foreach 문을 사용하여 내용을 순회할 수 있습니다.</li>
+                <li>이제 monsterSpawnPointInfo 에 입력된 정보대로 몬스터 스폰 포인트를 생성해야하는데 count 항목이 있어서 count 만큼 생성해야합니다.</li>
+                <li>결국, 특정 스폰 포인트 생성 로직을 count 횟수만큼 호출시키면 되는데, 이런 반복 작업에는 for 문을 사용합니다.</li>
+                <li>첫번째는 초기값, 두번째는 종료 조건, 세번째는 순회할 때마다 적용시킬 값을 나타냅니다.</li>
+                <li>따라서, count 가 10이라면 반복문 내부의 로직이 10번 호출되는 구조가 됩니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                <![CDATA[
+                private void GenerateSpawnPoints()
+                {
+                    foreach (var monsterSpawnPointInfo in monsterSpawnPointInfos)
+                    {
+                        for (var i = 0; i < monsterSpawnPointInfo.count; i++)
+                        {
+                            var spawnPointPrefab = Resources.Load<GameObject>($"SpawnPoints/SpawnPoint_{monsterSpawnPointInfo.monsterSpawnPointId}");
+                            var spawnPoint = Instantiate(spawnPointPrefab, transform);
+                        }
+                    }
+                }
+                ]]>
+            </code-block>
+            <list>
+                <li>Resources.Load 매서드를 사용하여 프리팹을 가져옵니다.</li>
+                <li>이후에 Instantiate 매서드를 사용하여 프리팹을 게임 오브젝트로 생성합니다.</li>
+                <li>스폰 포인트 정보에 지정한 id와 실제 프리팹의 경로가 일치하는지 확인해줍니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="batch-monster-spawn-8.png" src="batch-monster-spawn-8.png"/>
+            <list>
+                <li>실행 시, 스폰 포인트가 지정한 개수 만큼 생성되는 것을 확인할 수 있습니다.</li>
+                <li>생성 이후에 시간이 지나면 몬스터도 생성되는 것을 볼 수 있습니다.</li>
+                <li>하지만, 모든 스폰 포인트가 프리팹 위치로 생성되고 따라서 몬스터도 같은 위치에서 생성됩니다.</li>
+                <li>스폰 포인트는 맵 영역 이내에서 랜덤한 위치에 생성되어야 합니다.</li>
+            </list>
+        </step>
+        <step>
+            <code-block lang="c#">
+                using UnityEngine;
+
+                public class MapManager : MonoBehaviour
+                {
+                    public float mapMinX;
+                    public float mapMaxX;
+                    public float mapMinY;
+                    public float mapMaxY;
+
+                    public static MapManager instance;
+
+                    public void Init()
+                    {
+                        instance = this;
+                    }
+
+                    public Vector3 GetPositionInsideMap(Vector3 position)
+                    {
+                        position.x = Mathf.Clamp(position.x, mapMinX, mapMaxX);
+                        position.y = Mathf.Clamp(position.y, mapMinY, mapMaxY);
+                        return position;
+                    }
+
+                    public Vector3 GetRandomPositionInsideMap()
+                    {
+                        var randomX = Random.Range(mapMinX, mapMaxX);
+                        var randomY = Random.Range(mapMinY, mapMaxY);
+                        return new Vector3(randomX, randomY, 0f);
+                    }
+                }
+
+            </code-block>
+            <list>
+                <li>MapManager 클래스에 GetRandomPositionInsideMap 매서드를 추가합니다.</li>
+                <li>맵 영역 이내의 랜덤한 위치를 반환하는 함수입니다.</li>
+                <li>Random.Range 매서드를 사용하여 영역 이내의 임의의 x값과 y값을 생성합니다.</li>
+            </list>
+        </step>
+        <step>
+            <img alt="batch-monster-spawn-9.png" src="batch-monster-spawn-9.png"/>
+            <list>
+                <li>실행 시, 랜덤한 위치에 스폰 포인트가 생성되는 것을 볼 수 있습니다.</li>
+                <li>해당 위치는 실행할 때마다 달라집니다.</li>
+            </list>
+        </step>
+    </procedure>
+</topic>

@@ -60,6 +60,8 @@
         <toc-element topic="part2-ch02.topic">
             <toc-element topic="add-monster-manager.topic"/>
             <toc-element topic="add-monster-spawn-point.topic"/>
+            <toc-element topic="upgrade-monster-spawn.topic"/>
+            <toc-element topic="batch-monster-spawn.topic"/>
         </toc-element>
     </toc-element>
 </instance-profile>
